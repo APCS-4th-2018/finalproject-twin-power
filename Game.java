@@ -6,13 +6,14 @@
  */
 public class Game
 {
-    private int days, distance;
+    private int day, distance, time;
     private final int WIN_DISTANCE = 1000;
     private Player player;
 
     public Game(String name)
     {
         player = new Player(name);
+        day = time = distance = 0;
         System.out.println("Welcome " + player.getName());
         while(player.isAlive() && distance < WIN_DISTANCE)
         {
@@ -24,5 +25,28 @@ public class Game
     {
         //print out the choices possible
         //call other methods depending on the choice
+    }
+    
+    private void choiceGo()
+    {
+    }
+    private void choiceRest()
+    {
+    }
+    private void choiceForage()
+    {
+    }
+    
+    private void timeForward(int hours)
+    {
+        time += hours;
+        if(time >= 24)
+        {
+            time = time % 24;
+            day++;
+        }
+    }
+    private void endGame()
+    {
     }
 }
