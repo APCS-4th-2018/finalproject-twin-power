@@ -35,6 +35,11 @@ public class Player
      * @return thirst   an int ranging from 1-10
      */
     public int getThirst(){return thirst;}
+    /**
+     * Returns the name of the player
+     * @return name     the name of the player
+     */
+    public String getName(){return name;}
     
     /**
      * Changes the player's health by a specific amount
