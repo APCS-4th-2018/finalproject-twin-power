@@ -1,8 +1,8 @@
 /**
- * Write a description of class Game here.
+ * Representation of a single game
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Julia Du
+ * @version 05/21/19
  */
 public class Game
 {
@@ -13,14 +13,16 @@ public class Game
     public Game(String name)
     {
         player = new Player(name);
-        while(player.isAlive() && distance >= WIN_DISTANCE)
+        System.out.println("Welcome " + player.getName());
+        while(player.isAlive() && distance < WIN_DISTANCE)
         {
             turn();
         }
     }
     
-    
     private void turn()
     {
+        //print out the choices possible
+        //call other methods depending on the choice
     }
 }
