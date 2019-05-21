@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Player here.
  *
@@ -7,27 +6,48 @@
  */
 public class Player
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Player
-     */
-    public Player()
+    private int health, hunger, thirst;
+    private String name;
+    
+    public Player(String str)
     {
-        // initialise instance variables
-        x = 0;
+        name = str;
+        health = hunger = thirst = 10;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public int getHealth(){return health;}
+    public int getHunger(){return hunger;}
+    public int getThirst(){return thirst;}
+    
+    public void changeHealth(int amount)
     {
-        // put your code here
-        return x + y;
+        health -= amount;
+        if(health < 0)
+            health = 0;
+    }
+    public void changeHunger(int amount)
+    {
+        hunger -= amount;
+        if(hunger < 0)
+        {
+            health -= 1;
+            hunger = 0;
+        }
+    }
+    public void changeThirst(int amount)
+    {
+        thirst -= amount;
+        if(thirst < 0)
+        {
+            health -= 2;
+            thirst = 0;
+        }
+    }
+    
+    public boolean isAlive() {return health > 0;}
+    
+    public String toString()
+    {
+        return name + "\nHealth: " + health + "\nHunger: " + hunger + "\nThirst: " + thirst;
     }
 }
