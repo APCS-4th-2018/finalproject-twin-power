@@ -141,24 +141,30 @@ public class Game
     }
     private void useItem(int index)
     {
-        //"use the item"
+        inventory.get(index).useItem(player);
         inventory.remove(index);
     }
     private void addItems(int hours)
     {
+        //for every hour
         for(int h = 0; h < hours; h++)
         {
             int numItems = (int) (3 * Math.random());
+            //the number of items found is by chance
             for(int n = 0; n < numItems; n++)
             {
                 Item item;
                 double random = Math.random();
+                //either find food or water
                 if(random < 0.5)
                     item = new Food("apple");
                 else
                     item = new Water("bottle of water");
                 System.out.println("You found a " + item.getName());
             }
+            //if you didn't find anything for that hour
+            if(numItems == 0)
+                System.out.println("You found nothing for an hour");
         }
     }
     private void timeForward(int hours)
