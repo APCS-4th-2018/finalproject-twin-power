@@ -9,7 +9,7 @@ import java.util.*;
 public class Game
 {
     private int day, distance, time;
-    private final int WIN_DISTANCE = 1000;
+    private final int WIN_DISTANCE = 100;
     private Player player;
     private ArrayList inventory;
     private ConsoleIO keyboard;
@@ -43,7 +43,6 @@ public class Game
             System.out.print(">> ");
             choice = keyboard.readInt();
         }
-        System.out.println();
         switch(choice)
         {
             case 1 :
@@ -59,7 +58,7 @@ public class Game
                 choiceInventory();
                 break;  
         }
-        System.out.println();
+        System.out.println("\n");
     }
     
     private void choiceGo()
@@ -76,6 +75,8 @@ public class Game
         }
         timeForward(hours);
         distance += hours * player.getSpeed();
+        player.changeHunger(-(double)hours/4);
+        player.changeThirst(-(double)hours/2);
         chanceEvent();
     }
     private void choiceRest()
@@ -91,7 +92,7 @@ public class Game
             hours = keyboard.readInt();
         }
         timeForward(hours);
-        player.changeHealth((player.getHunger() / 5) * hours);
+        player.changeHealth(player.getHunger() * hours);
     }
     private void choiceForage()
     {
