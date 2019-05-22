@@ -6,13 +6,10 @@
  */
 public class Water implements Item
 {
-    private int amount;
     private String name;
-    public Water(String str, int num)
+    public Water(String str)
     {
         name = str;
-        amount = num;
     }
-    public int getAmount(){return amount;}
     public String getName(){return name;}
 }

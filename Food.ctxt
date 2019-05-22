@@ -7,4 +7,6 @@ comment2.params=
 comment2.target=int\ getAmount()
 comment3.params=
 comment3.target=java.lang.String\ getName()
-numComments=4
+comment4.params=num
+comment4.target=void\ changeAmount(int)
+numComments=5

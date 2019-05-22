@@ -6,6 +6,5 @@
  */
 public interface Item
 {
-    public int getAmount();
     public String getName();
 }

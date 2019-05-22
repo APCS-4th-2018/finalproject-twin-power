@@ -7,13 +7,10 @@
  */
 public class Food implements Item
 {
-    private int amount;
     private String name;
-    public Food(String str, int num)
+    public Food(String str)
     {
         name = str;
-        amount = num;
     }
-    public int getAmount(){return amount;}
     public String getName(){return name;}
 }

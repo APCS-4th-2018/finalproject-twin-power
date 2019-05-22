@@ -11,13 +11,13 @@ public class Game
     private int day, distance, time;
     private final int WIN_DISTANCE = 100;
     private Player player;
-    private ArrayList inventory;
+    private ArrayList<Item> inventory;
     private ConsoleIO keyboard;
 
     public Game(String name)
     {
         player = new Player(name);
-        inventory = new ArrayList();
+        inventory = new ArrayList<Item>();
         keyboard = new ConsoleIO();
         day = time = distance = 0;
         System.out.println("Welcome " + player.getName());
@@ -109,19 +109,46 @@ public class Game
         timeForward(hours);
         player.changeHunger(-(double)hours/8);
         player.changeThirst(-(double)hours/4);
+        addItems(hours);
         //add random items to inventory, the number of items depending on how long you forage
     }
     private void choiceInventory()
     {
         System.out.println("Inventory");
-        for(Object item : inventory)
+        for(int count = 0; count < inventory.size(); count++)
         {
-            System.out.println(item);
+            System.out.println("(" + (count + 1) + ")" + inventory.get(count).getName());
+        }
+        int choice = 1;
+        while(choice != 0)
+        {
+            System.out.println("Use item? (Type 0 to exit)");
+            System.out.print(">> ");
+            choice = keyboard.readInt();
+            while(choice < 0 || choice > inventory.size())
+            {
+                System.out.println("Invalid choice");
+                System.out.print(">> ");
+                choice = keyboard.readInt();
+            }
+            useItem(choice);
         }
     }
     
     private void chanceEvent()
     {
+    }
+    private void useItem(int index)
+    {
+        //"use the item"
+        inventory.remove(index);
+        
+    }
+    private void addItems(int hours)
+    {
+        //items you get depend on number of hours and chance
+        //50-50 chance of getting food/water
+        //you get one
     }
     private void timeForward(int hours)
     {
