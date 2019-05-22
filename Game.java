@@ -43,6 +43,7 @@ public class Game
             System.out.print(">> ");
             choice = keyboard.readInt();
         }
+        System.out.println("\n");
         switch(choice)
         {
             case 1 :
@@ -58,7 +59,6 @@ public class Game
                 choiceInventory();
                 break;  
         }
-        System.out.println("\n");
     }
     
     private void choiceGo()
@@ -107,6 +107,8 @@ public class Game
             hours = keyboard.readInt();
         }
         timeForward(hours);
+        player.changeHunger(-(double)hours/8);
+        player.changeThirst(-(double)hours/4);
         //add random items to inventory, the number of items depending on how long you forage
     }
     private void choiceInventory()
@@ -140,6 +142,15 @@ public class Game
     }
     private void endGame()
     {
-        
+        if(player.isAlive())
+        {
+            System.out.println("[WIN MESSAGE]");
+            System.out.println("You traveled " + WIN_DISTANCE + " in " + day + " days");
+        }
+        else
+        {
+            System.out.println("[LOST MESSAGE]");
+            System.out.println("You had " + (WIN_DISTANCE - distance) + " kilometers left");
+        }
     }
 }
