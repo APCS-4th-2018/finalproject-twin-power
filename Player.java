@@ -35,6 +35,7 @@ public class Player
      * @return thirst   an int ranging from 1-10
      */
     public int getThirst(){return thirst;}
+    public int getSpeed() {return health/2;}
     /**
      * Returns the name of the player
      * @return name     the name of the player
