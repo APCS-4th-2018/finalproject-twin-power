@@ -51,6 +51,8 @@ public class Player
         health -= amount;
         if(health < 0)
             health = 0;
+        if(health > 10)
+            health = 10;
     }
     /**
      * Changes the player's hunger level by a specific amount
@@ -65,6 +67,8 @@ public class Player
             health -= 1;
             hunger = 0;
         }
+        if(hunger > 10)
+            hunger = 10;
     }
     /**
      * Changes the player's thirst level by a specific amount
@@ -79,6 +83,8 @@ public class Player
             health -= 2;
             thirst = 0;
         }
+        if(thirst > 10)
+            thirst = 10;
     }
     
     /**
@@ -92,6 +98,6 @@ public class Player
      */
     public String toString()
     {
-        return name + "\nHealth: " + health + "\nHunger: " + hunger + "\nThirst: " + thirst;
+        return "Health: " + health + "\nHunger: " + hunger + "\nThirst: " + thirst;
     }
 }

@@ -43,6 +43,7 @@ public class Game
             System.out.print(">> ");
             choice = keyboard.readInt();
         }
+        System.out.println();
         switch(choice)
         {
             case 1 :
@@ -79,9 +80,33 @@ public class Game
     }
     private void choiceRest()
     {
+        int hours;
+        System.out.println("How many hours will you rest for?");
+        System.out.print(">> ");
+        hours = keyboard.readInt();
+        while(hours < 0)
+        {
+            System.out.println("Invalid choice");
+            System.out.print(">> ");
+            hours = keyboard.readInt();
+        }
+        timeForward(hours);
+        player.changeHealth((player.getHunger() / 5) * hours);
     }
     private void choiceForage()
     {
+        int hours;
+        System.out.println("How many hours will you forage for?");
+        System.out.print(">> ");
+        hours = keyboard.readInt();
+        while(hours < 0)
+        {
+            System.out.println("Invalid choice");
+            System.out.print(">> ");
+            hours = keyboard.readInt();
+        }
+        timeForward(hours);
+        //add random items to inventory, the number of items depending on how long you forage
     }
     private void choiceInventory()
     {
@@ -107,7 +132,8 @@ public class Game
     private void printStatus()
     {
         System.out.println("Day " + day);
-        System.out.print("Time: " + time + ":00\n");
+        System.out.println("Time: " + time + ":00");
+        System.out.println(WIN_DISTANCE - distance + " kilometers left");
         System.out.println(player);
         System.out.println();
     }
