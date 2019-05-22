@@ -137,18 +137,29 @@ public class Game
     
     private void chanceEvent()
     {
+        //getting attacked by animals, rain, etc.
     }
     private void useItem(int index)
     {
         //"use the item"
         inventory.remove(index);
-        
     }
     private void addItems(int hours)
     {
-        //items you get depend on number of hours and chance
-        //50-50 chance of getting food/water
-        //you get one
+        for(int h = 0; h < hours; h++)
+        {
+            int numItems = (int) (3 * Math.random());
+            for(int n = 0; n < numItems; n++)
+            {
+                Item item;
+                double random = Math.random();
+                if(random < 0.5)
+                    item = new Food("apple");
+                else
+                    item = new Water("bottle of water");
+                System.out.println("You found a " + item.getName());
+            }
+        }
     }
     private void timeForward(int hours)
     {
