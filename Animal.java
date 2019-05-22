@@ -7,12 +7,13 @@
  */
 public abstract class Animal
 {
-    private String aName;
+    private String nameDescription;
     private String solution;
     public Animal ()
     {
     }
     
-    public abstract boolean compareTo();
+    public abstract boolean compareTo(String str);
+    public abstract String getDescript();
 
 }

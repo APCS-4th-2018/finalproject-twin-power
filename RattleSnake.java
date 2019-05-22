@@ -1,11 +1,11 @@
 
 /**
- * Write a description of class MountainLion here.
+ * Write a description of class Snake here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MountainLion extends Animal
+public class RattleSnake extends Animal
 {
     private String nameDescription;
     private String solution = "";
@@ -13,7 +13,7 @@ public class MountainLion extends Animal
     /**
      * Constructor for objects of class Bear
      */
-    public MountainLion()
+    public RattleSnake()
     {
     }
 
