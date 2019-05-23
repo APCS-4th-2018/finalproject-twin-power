@@ -14,6 +14,7 @@ public class Game
     private Player player;
     private ArrayList<Item> inventory;
     private ConsoleIO keyboard;
+    private ArrayList <Animal> animal = new ArrayList <Animal>();
 
     public Game(String name)
     {
@@ -21,6 +22,14 @@ public class Game
         inventory = new ArrayList<Item>();
         keyboard = new ConsoleIO();
         day = time = distance = 0;
+        //construct and array of different animals for random generation each turn
+        BlackBear bb = new BlackBear();
+        RattleSnake rs = new RattleSnake();
+        MountainLion ml = new MountainLion();
+        animal.add(bb);
+        animal.add(rs);
+        animal.add(ml);
+        
         System.out.println("Welcome, " + player.getName());
         //explain the game here
         while(player.isAlive() && distance < WIN_DISTANCE)
@@ -170,7 +179,32 @@ public class Game
     //determines a chance event when continuing
     private void chanceEvent()
     {
-        //getting attacked by animals, rain, etc.
+        int num = (int)(Math.random()*11);
+        if(num <= 5)
+        {
+            String mcA = "";
+            String mcB = "";
+            String mcC = "";
+            String mcD = "";
+            
+            int num1 = (int)(Math.random()*10);
+            
+            
+            if(num1 < 3)
+            {
+                String d = animal.get(0).getDescript();//blackbear
+                //multiple choice questionnaire
+                System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
+                String str = keyboard.readLine();//input answer choice
+                
+                if (str.equals("A") || str.equals("a"))
+                {
+                    if (animal.get(0).compareTo(mcA))
+                    {
+                        }
+                    }
+            }
+        }
     }
     
     //uses a specific item at an index

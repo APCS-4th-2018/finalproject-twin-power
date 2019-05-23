@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Animal
+comment0.text=\n\ Write\ a\ description\ of\ class\ Animal\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Animal()
+comment2.params=str
+comment2.target=boolean\ compareTo(java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getDescript()
+numComments=4
