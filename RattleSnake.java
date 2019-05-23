@@ -31,4 +31,8 @@ public class RattleSnake extends Animal
     {
         return solution;
     }
+    public String getMC()
+    {
+        return mcSolution;
+    }
 }

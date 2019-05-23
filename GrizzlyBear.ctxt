@@ -11,4 +11,6 @@ comment3.params=
 comment3.target=java.lang.String\ getDescript()
 comment4.params=
 comment4.target=java.lang.String\ getSolution()
-numComments=5
+comment5.params=
+comment5.target=java.lang.String\ getMC()
+numComments=6

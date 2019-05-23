@@ -38,4 +38,8 @@ public class MountainLion extends Animal
     {
         return solution;
     }
+    public String getMC()
+    {
+        return mcSolution;
+    }
 }
