@@ -16,7 +16,7 @@ public class Driver
         System.out.println("What is your name?");
         System.out.print(">> ");
         name = keyboard.readLine();
-        System.out.println("\n");
+        System.out.println();
         game = new Game(name);
     }
 }

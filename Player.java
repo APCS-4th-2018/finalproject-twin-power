@@ -1,3 +1,5 @@
+import apcslib.*;
+import chn.util.*;
 /**
  * Representation of the Player
  *
@@ -38,7 +40,7 @@ public class Player
     /**
      * Returns the speed of the player, in km/hr, depending on the current health
      */
-    public double getSpeed() {return health/2;}
+    public double getSpeed() {return health/4;}
     /**
      * Returns the name of the player
      * @return name     the name of the player
@@ -101,6 +103,6 @@ public class Player
      */
     public String toString()
     {
-        return "Health: " + health + "\nHunger: " + hunger + "\nThirst: " + thirst;
+        return "Health: " + Format.left(health, 4, 2) + "\nHunger: " + Format.left(hunger, 4, 2) + "\nThirst: " + Format.left(thirst, 4, 2);
     }
 }
