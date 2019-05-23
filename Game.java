@@ -14,7 +14,7 @@ public class Game
 {
     ConsoleIO keyboard = new ConsoleIO();
     private int day, distance, time;
-    private final int WIN_DISTANCE = 1000;
+    private final int WIN_DISTANCE = 100;
     private Player player;
     private ArrayList<Item> inventory;
     private ArrayList <Animal> animal = new ArrayList <Animal>();
@@ -192,7 +192,6 @@ public class Game
             
             int num1 = (int)(Math.random()*10);
             
-            
             if(num1 < 3)
             {
                 String d = animal.get(0).getDescript();//blackbear
@@ -268,7 +267,7 @@ public class Game
         if(player.isAlive())
         {
             System.out.println("\n[WIN MESSAGE]");
-            System.out.println("You traveled " + WIN_DISTANCE + " kilometers in " + day + " days and " + time + "hours");
+            System.out.println("You traveled " + WIN_DISTANCE + " kilometers in " + day + " days and " + time + " hours");
         }
         else
         {
