@@ -21,10 +21,10 @@ public class Game
         player = new Player(name);
         
         //construct and array of different animals for random generation each turn
-        BlackBear bb = new BlackBear();
+        GrizzlyBear gb = new GrizzlyBear();
         RattleSnake rs = new RattleSnake();
         MountainLion ml = new MountainLion();
-        animal.add(bb);
+        animal.add(gb);
         animal.add(rs);
         animal.add(ml);
         

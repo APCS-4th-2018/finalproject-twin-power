@@ -9,6 +9,7 @@ public abstract class Animal
 {
     private String nameDescription;
     private String solution;
+    private String mcSolution;
     public Animal ()
     {
     }

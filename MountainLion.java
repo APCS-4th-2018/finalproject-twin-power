@@ -7,8 +7,13 @@
  */
 public class MountainLion extends Animal
 {
-    private String nameDescription;
-    private String solution = "";
+    private String nameDescription = "A mountain lion has spotted you, and is ready for attack. What should you do?";
+    private String mcSolution = "Do not run away, and face the animal making loud noises.";
+    private String solution = "Do not run away. This may trigger an attack."
+        + "Never turn your back to a lion."
+        + "Maintain constant eye contact."
+        + "Make loud noises, yell, wave your arms."
+        + "Make yourself look bigger with your clothing or other objects.";
 
     /**
      * Constructor for objects of class Bear
@@ -22,11 +27,15 @@ public class MountainLion extends Animal
      */
     public boolean compareTo(String str)
     {
-        return str.equals(solution);
+        return str.equals(mcSolution);
         
     }
     public String getDescript()
     {
         return nameDescription;
+    }
+    public String getSolution()
+    {
+        return solution;
     }
 }
