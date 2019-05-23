@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=MountainLion
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MountainLion\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.target=GrizzlyBear
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bear\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=MountainLion()
+comment1.target=GrizzlyBear()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Bear\r\n
 comment2.params=str
 comment2.target=boolean\ compareTo(java.lang.String)
