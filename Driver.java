@@ -13,9 +13,10 @@ public class Driver
         String name;
         Game game;
         System.out.println("[GAME NAME HERE]\n");
-        System.out.print("Enter your name: ");
+        System.out.println("What is your name?");
+        System.out.print(">> ");
         name = keyboard.readLine();
-        System.out.println("\n");
+        System.out.println();
         game = new Game(name);
     }
 }
