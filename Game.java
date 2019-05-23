@@ -12,33 +12,11 @@ import java.lang.Math;
 import chn.util.*;
 public class Game
 {
-<<<<<<< HEAD
     ConsoleIO keyboard = new ConsoleIO();
-    private int days, distance;
+    private int day, distance, time;
     private final int WIN_DISTANCE = 1000;
     private Player player;
-    private ArrayList <Animal> animal = new ArrayList <Animal>();
-   
-    
-    public Game(String name)
-    {
-        player = new Player(name);
-        
-        //construct and array of different animals for random generation each turn
-        GrizzlyBear gb = new GrizzlyBear();
-        RattleSnake rs = new RattleSnake();
-        MountainLion ml = new MountainLion();
-        animal.add(gb);
-        animal.add(rs);
-        animal.add(ml);
-        
-        System.out.println("Welcome " + player.getName());
-=======
-    private int day, distance, time;
-    private final int WIN_DISTANCE = 100;
-    private Player player;
     private ArrayList<Item> inventory;
-    private ConsoleIO keyboard;
     private ArrayList <Animal> animal = new ArrayList <Animal>();
 
     public Game(String name)
@@ -57,7 +35,6 @@ public class Game
         
         System.out.println("Welcome, " + player.getName());
         //explain the game here
->>>>>>> Julia
         while(player.isAlive() && distance < WIN_DISTANCE)
         {
             turn();
@@ -68,8 +45,6 @@ public class Game
     //represents one turn
     private void turn()
     {
-<<<<<<< HEAD
-=======
         int choice;
         System.out.println();
         printStatus();
@@ -207,7 +182,6 @@ public class Game
     //determines a chance event when continuing
     private void chanceEvent()
     {
->>>>>>> Julia
         int num = (int)(Math.random()*11);
         if(num <= 5)
         {
@@ -234,10 +208,6 @@ public class Game
                     }
             }
         }
-<<<<<<< HEAD
-        //print out the choices possible
-        //call other methods depending on the choice
-=======
     }
     
     //uses a specific item at an index
@@ -305,6 +275,5 @@ public class Game
             System.out.println("\n[LOST MESSAGE]");
             System.out.println("You had " + (WIN_DISTANCE - distance) + " kilometers left");
         }
->>>>>>> Julia
     }
 }
