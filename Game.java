@@ -75,6 +75,7 @@ public class Game
                 choiceInventory();
                 break;  
         }
+        
     }
     
     //choice of traveling
@@ -195,6 +196,7 @@ public class Game
             if(num1 < 3)//Grizzly Bear Attack
             {
                 String d = animal.get(0).getDescript();//grizzlybear
+                System.out.println(d);
                 //multiple choice questionnaire
                 System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
                 String str = keyboard.readLine();//input answer choice
@@ -203,12 +205,17 @@ public class Game
                 {
                     player.changeHealth(-10.0);//player dies
                 }
+                    else
+                    {
+                        System.out.print("Correct!" + gb.getSolution());
+                    }
         
             }
             else
                 if(num1 >=3 && num1 < 6)//rattlesnake
                 {
                     String d = animal.get(1).getDescript();//rattlesnake
+                    System.out.println(d);
                     //multiple choice questionnaire
                     System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
                     String str = keyboard.readLine();//input answer choice
@@ -217,7 +224,29 @@ public class Game
                     {
                         player.changeHealth(-10.0);//player dies
                     }
+                        else
+                        {
+                            System.out.print("Correct!" + rs.getSolution());
+                        }
                 }
+                else
+                    if(num1 >= 6)//mountainlion
+                    {
+                        String d = animal.get(2).getDescript();//mountainlion
+                        System.out.println(d);
+                        //multiple choice questionnaire
+                        System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
+                        String str = keyboard.readLine();//input answer choice
+                
+                            if (!str.equals("C") && !str.equals("c"))//incorrect answer choice
+                            {
+                                player.changeHealth(-10.0);//player dies
+                            }
+                                else
+                                {
+                                    System.out.print("Correct!" + ml.getSolution());
+                                }
+                    }
         }
     }
     
