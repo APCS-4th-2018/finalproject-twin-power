@@ -18,18 +18,17 @@ public class Game
     private Player player;
     private ArrayList<Item> inventory;
     private ArrayList <Animal> animal = new ArrayList <Animal>();
-
+    private GrizzlyBear gb = new GrizzlyBear();
+    private RattleSnake rs = new RattleSnake();
+    private MountainLion ml = new MountainLion();
     public Game(String name)
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();
         keyboard = new ConsoleIO();
         day = time = distance = 0;
-        //construct and array of different animals for random generation each turn
-        BlackBear bb = new BlackBear();
-        RattleSnake rs = new RattleSnake();
-        MountainLion ml = new MountainLion();
-        animal.add(bb);
+        //construct and array of different animals for random generation each turn        
+        animal.add(gb);
         animal.add(rs);
         animal.add(ml);
         
@@ -185,27 +184,26 @@ public class Game
         int num = (int)(Math.random()*11);
         if(num <= 5)
         {
-            String mcA = "";
-            String mcB = "";
-            String mcC = "";
-            String mcD = "";
+            String mcA = "A. " + gb.getMC();//grizzlybear solution
+            String mcB = "B. " + rs.getMC();//rattlesnake solution
+            String mcC = "C. " + ml.getMC();//mountain lion solution
+            String mcD = "D. " + "Run away as fast as you can";
             
             int num1 = (int)(Math.random()*10);
             
             
-            if(num1 < 3)
+            if(num1 < 3)//Grizzly Bear Attack
             {
-                String d = animal.get(0).getDescript();//blackbear
+                String d = animal.get(0).getDescript();//grizzlybear
                 //multiple choice questionnaire
                 System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
                 String str = keyboard.readLine();//input answer choice
                 
-                if (str.equals("A") || str.equals("a"))
+                if (!str.equals("A") && !str.equals("a"))//incorrect answer choice
                 {
-                    if (animal.get(0).compareTo(mcA))
-                    {
-                        }
-                    }
+                    player.changeHealth(-10.0);//player dies
+                }
+        
             }
         }
     }
