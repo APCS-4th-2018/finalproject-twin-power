@@ -205,6 +205,19 @@ public class Game
                 }
         
             }
+            else
+                if(num1 >=3 && num1 < 6)//rattlesnake
+                {
+                    String d = animal.get(1).getDescript();//rattlesnake
+                    //multiple choice questionnaire
+                    System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
+                    String str = keyboard.readLine();//input answer choice
+                
+                    if (!str.equals("B") && !str.equals("b"))//incorrect answer choice
+                    {
+                        player.changeHealth(-10.0);//player dies
+                    }
+                }
         }
     }
     
