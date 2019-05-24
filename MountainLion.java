@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class MountainLion here.
  *
@@ -28,7 +27,6 @@ public class MountainLion extends Animal
     public boolean compareTo(String str)
     {
         return str.equals(mcSolution);
-        
     }
     public String getDescript()
     {
