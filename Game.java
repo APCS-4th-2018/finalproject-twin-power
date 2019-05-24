@@ -204,6 +204,7 @@ public class Game
                 if (!str.equals("A") && !str.equals("a"))//incorrect answer choice
                 {
                     player.changeHealth(-10.0);//player dies
+                    System.out.println("Incorrect, you got attacked by a Grizzly Bear and got killed: " +gb.getSolution());
                 }
                     else
                     {
@@ -223,6 +224,7 @@ public class Game
                     if (!str.equals("B") && !str.equals("b"))//incorrect answer choice
                     {
                         player.changeHealth(-10.0);//player dies
+                        System.out.println("Incorrect, you got bit by a Rattlesnake and got killed: " + rs.getSolution());
                     }
                         else
                         {
@@ -241,6 +243,7 @@ public class Game
                             if (!str.equals("C") && !str.equals("c"))//incorrect answer choice
                             {
                                 player.changeHealth(-10.0);//player dies
+                                System.out.println("Incorrect, you got attacked by a Mountain Lion and got killed: " + ml.getSolution());
                             }
                                 else
                                 {
