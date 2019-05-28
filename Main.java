@@ -12,6 +12,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 {
     Stage window;
     Scene start, main;
+    Game game;
     
     public static void main(String[] args)
     {
@@ -44,31 +45,40 @@ public class Main extends Application implements EventHandler<ActionEvent>
         start = new Scene(layout1,960,540);
         
         //main menu
+        Label distance = new Label("Distance left: ");
+        GridPane.setConstraints(distance, 0, 1);
+        Label health = new Label("Health: ");
+        GridPane.setConstraints(health, 0, 2);
+        Label hunger = new Label("Hunger: ");
+        GridPane.setConstraints(hunger, 0, 3);
+        Label thirst = new Label("Thirst: ");
+        GridPane.setConstraints(thirst, 0, 4);
+        
         Button travel = new Button("Travel");
         travel.setOnAction(e -> window.setScene(start));
-        GridPane.setConstraints(travel,1,1);
+        GridPane.setConstraints(travel,0,6);
         
         Button rest = new Button("Rest");
         rest.setOnAction(e -> window.setScene(start));
-        GridPane.setConstraints(rest,1,2);
+        GridPane.setConstraints(rest,0,7);
         
         Button forage = new Button("Forage");
         forage.setOnAction(e -> window.setScene(start));
-        GridPane.setConstraints(forage,1,3);
+        GridPane.setConstraints(forage,0,8);
         
         Button viewInv = new Button("View Inventory");
         viewInv.setOnAction(e -> window.setScene(start));
-        GridPane.setConstraints(viewInv,1,4);
+        GridPane.setConstraints(viewInv,0,9);
         
         GridPane layout2 = new GridPane();
-        layout2.setPadding(new Insets(10,10,10,10));
-        layout2.setVgap(8);
+        layout2.setPadding(new Insets(20,20,20,20));
+        layout2.setVgap(10);
         layout2.setHgap(10);
         
-        layout2.getChildren().addAll(travel, rest, forage, viewInv);
-        layout2.setAlignment(Pos.CENTER_LEFT);
+        layout2.getChildren().addAll(distance, health, hunger, thirst,
+        travel, rest, forage, viewInv);
+        layout2.setAlignment(Pos.TOP_LEFT);
         main = new Scene(layout2,960,540);
-        
         
         //start
         window.setScene(start);
