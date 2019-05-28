@@ -254,6 +254,12 @@ public class Game
         }
     }
     
+    private void nextScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        
+    }
+    
     //uses a specific item at an index
     private void useItem(int index)
     {
