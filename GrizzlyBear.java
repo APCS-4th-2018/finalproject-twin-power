@@ -2,7 +2,7 @@
 /**
  * Write a description of class Bear here.
  *
- * @author (your name)
+ * @author Kane Xu
  * @version (a version number or a date)
  */
 public class GrizzlyBear extends Animal
@@ -34,5 +34,9 @@ public class GrizzlyBear extends Animal
     public String getSolution()
     {
         return solution;
+    }
+    public String getMC()
+    {
+        return mcSolution;
     }
 }
