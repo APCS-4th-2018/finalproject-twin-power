@@ -1,4 +1,4 @@
-#Tue May 28 13:39:40 PDT 2019
+#Wed May 29 15:27:27 PDT 2019
 bluej.teamsettings.groupname=
 bluej.teamsettings.git.repositoryPrefix=/APCS-4th-2018/finalproject-twin-power.git
 bluej.teamsettings.git.protocol=https
@@ -7,8 +7,8 @@ bluej.teamsettings.git.server=github.com
 bluej.teamsettings.yourEmail=ijkxuluo7000@gmail.com
 bluej.teamsettings.vcs=git
 bluej.teamsettings.ignore8=\\.DS_Store
-bluej.teamsettings.yourName=Ian Xu
 bluej.teamsettings.ignore7=.*\\\#backup
+bluej.teamsettings.yourName=Ian Xu
 bluej.teamsettings.ignore6=.*\\\#
 bluej.teamsettings.ignore5=.*\\~
 bluej.teamsettings.ignore4=.*\\.ctxt
