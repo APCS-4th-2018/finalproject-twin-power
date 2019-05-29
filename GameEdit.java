@@ -10,7 +10,7 @@ import apcslib.*;
 import java.util.*;
 import java.lang.Math;
 import chn.util.*;
-public class Game
+public class GameEdit
 {
     ConsoleIO keyboard = new ConsoleIO();
     private int day, distance, time;
@@ -22,12 +22,14 @@ public class Game
     private RattleSnake rs = new RattleSnake();
     private MountainLion ml = new MountainLion();
     
-    public Game(String name)
+    public GameEdit(String name)
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();
         keyboard = new ConsoleIO();
-        day = time = distance = 0;
+        day = 1;
+        time = 8;
+        distance = 0;
         //construct and array of different animals for random generation each turn        
         animal.add(gb);
         animal.add(rs);
@@ -35,9 +37,9 @@ public class Game
         
         System.out.println("Welcome, " + player.getName());
         //explain the game here
-        while(player.isAlive() && distance < WIN_DISTANCE)
+        //while(player.isAlive() && distance < WIN_DISTANCE)
         {
-            turn();
+            //turn();
         }
         endGame();
     }
@@ -48,52 +50,11 @@ public class Game
         int choice;
         System.out.println();
         printStatus();
-        System.out.println("(1) Travel");
-        System.out.println("(2) Rest");
-        System.out.println("(3) Forage for supplies");
-        System.out.println("(4) View and use items in the inventory");
-        System.out.print(">> ");
-        choice = keyboard.readInt();
-        while(choice > 4 || choice < 1)
-        {
-            System.out.println("Invalid choice");
-            System.out.print(">> ");
-            choice = keyboard.readInt();
-        }
-        System.out.println();
-        switch(choice)
-        {
-            case 1 :
-                choiceTravel();
-                break;
-            case 2 :
-                choiceRest();
-                break;
-            case 3 :
-                choiceForage();
-                break;
-            case 4 :
-                choiceInventory();
-                break;  
-        }
-        
     }
     
     //choice of traveling
-    public void choiceTravel()
+    public void choiceTravel(int hours)
     {
-        int hours;
-        //ask how many hours
-        System.out.println("How many hours will you travel for?");
-        System.out.print(">> ");
-        hours = keyboard.readInt();
-        //reprompt if not valid number
-        while(hours < 0)
-        {
-            System.out.println("Invalid choice");
-            System.out.print(">> ");
-            hours = keyboard.readInt();
-        }
         //move time forward, change distance, change hunger/thirst, chance event
         timeForward(hours);
         distance += hours * player.getSpeed();
@@ -103,40 +64,16 @@ public class Game
     }
     
     //choice of resting
-    public void choiceRest()
+    public void choiceRest(int hours)
     {
-        int hours;
-        //ask how many hours
-        System.out.println("How many hours will you rest for?");
-        System.out.print(">> ");
-        hours = keyboard.readInt();
-        //reprompt if not valid number
-        while(hours < 0)
-        {
-            System.out.println("Invalid choice");
-            System.out.print(">> ");
-            hours = keyboard.readInt();
-        }
         //move the time forward, regen health
         timeForward(hours);
         player.changeHealth(player.getHunger() * hours);
     }
     
     //choice of foraging
-    public void choiceForage()
+    public void choiceForage(int hours)
     {
-        int hours;
-        //ask how many hours
-        System.out.println("How many hours will you forage for?");
-        System.out.print(">> ");
-        hours = keyboard.readInt();
-        //reprompt if not valid number
-        while(hours < 0)
-        {
-            System.out.println("Invalid choice");
-            System.out.print(">> ");
-            hours = keyboard.readInt();
-        }
         //move the time forward, change hunger/thirst, add items
         timeForward(hours);
         player.changeHunger(-(double)hours/10);
@@ -144,40 +81,15 @@ public class Game
         addItems(hours);
     }
     
-    //choice of viewing/using inventory
-    public void choiceInventory()
-    {
-        int choice = 1;
-        //while the player wants to continue using items
-        while(choice != 0)
-        {
-            //print the inventory
-            printInventory();
-            //ask which item will be used
-            System.out.println("\nWhich item would you like to use? (Type 0 to exit)");
-            System.out.print(">> ");
-            choice = keyboard.readInt();
-            //reprompt user if not valid number
-            while(choice < 0 || choice > inventory.size())
-            {
-                System.out.println("Invalid choice");
-                System.out.print(">> ");
-                choice = keyboard.readInt();
-            }
-            //use the item
-            if(choice != 0)
-                useItem(choice-1);
-        }
-    }
-    
     //prints the inventory
-    public void printInventory()
+    public String printInventory()
     {
-        System.out.println("\nInventory");
+        String text = "Inventory";
         for(int count = 0; count < inventory.size(); count++)
         {
-            System.out.println("(" + (count + 1) + ")" + inventory.get(count).getName());
+            text += "\n(" + (count + 1) + ")" + inventory.get(count).getName();
         }
+        return text;
     }
     
     //determines a chance event when continuing
@@ -256,7 +168,7 @@ public class Game
     }
     
     //uses a specific item at an index
-    private void useItem(int index)
+    public void useItem(int index)
     {
         inventory.get(index).useItem(player);
         inventory.remove(index);
@@ -305,6 +217,10 @@ public class Game
         System.out.println(player);
         System.out.println();
     }
+    
+    public int getDistance() { return distance;}
+    public int getDay() { return day;}
+    public int getTime() { return time;}
     
     //prints the end game message
     private void endGame()

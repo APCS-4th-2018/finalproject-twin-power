@@ -12,7 +12,9 @@ public class Main extends Application implements EventHandler<ActionEvent>
 {
     Stage window;
     Scene start, main;
-    Game game;
+    Label time, distance;
+    TextField display;
+    GameEdit game;
     
     public static void main(String[] args)
     {
@@ -25,6 +27,17 @@ public class Main extends Application implements EventHandler<ActionEvent>
         window.setTitle("Game");
         
         //starting menu
+        start();
+        
+        //main menu
+        mainMenu();
+        
+        window.setScene(start);
+        window.show();
+    }
+    
+    private void start()
+    {
         GridPane layout1 = new GridPane();
         layout1.setPadding(new Insets(10,10,10,10));
         layout1.setVgap(8);
@@ -37,15 +50,20 @@ public class Main extends Application implements EventHandler<ActionEvent>
         GridPane.setConstraints(input,1,0);
         
         Button startButton = new Button("Start");
-        startButton.setOnAction(e -> window.setScene(main));
+        startButton.setOnAction(e -> {window.setScene(main); 
+                                      game = new GameEdit(input.getText());});
         GridPane.setConstraints(startButton,2,0);
         
         layout1.getChildren().addAll(label1, input, startButton);
         layout1.setAlignment(Pos.CENTER);
         start = new Scene(layout1,960,540);
-        
-        //main menu
-        Label distance = new Label("Distance left: ");
+    }
+    
+    private void mainMenu()
+    {
+        time = new Label("Day 1 8:00");
+        GridPane.setConstraints(time, 0, 0);
+        distance = new Label("Distance left: 0");
         GridPane.setConstraints(distance, 0, 1);
         Label health = new Label("Health: ");
         GridPane.setConstraints(health, 0, 2);
@@ -55,39 +73,63 @@ public class Main extends Application implements EventHandler<ActionEvent>
         GridPane.setConstraints(thirst, 0, 4);
         
         Button travel = new Button("Travel");
-        travel.setOnAction(e -> window.setScene(start));
+        travel.setOnAction(e -> choice(1));
         GridPane.setConstraints(travel,0,6);
         
         Button rest = new Button("Rest");
-        rest.setOnAction(e -> window.setScene(start));
+        rest.setOnAction(e -> choice(2));
         GridPane.setConstraints(rest,0,7);
         
         Button forage = new Button("Forage");
-        forage.setOnAction(e -> window.setScene(start));
+        forage.setOnAction(e -> choice(3));
         GridPane.setConstraints(forage,0,8);
         
         Button viewInv = new Button("View Inventory");
-        viewInv.setOnAction(e -> window.setScene(start));
+        viewInv.setOnAction(e -> choice(4));
         GridPane.setConstraints(viewInv,0,9);
         
-        GridPane layout2 = new GridPane();
-        layout2.setPadding(new Insets(20,20,20,20));
-        layout2.setVgap(10);
-        layout2.setHgap(10);
+        display = new TextField();
+        GridPane.setConstraints(display,1,5);
         
-        layout2.getChildren().addAll(distance, health, hunger, thirst,
-        travel, rest, forage, viewInv);
-        layout2.setAlignment(Pos.TOP_LEFT);
-        main = new Scene(layout2,960,540);
+        GridPane layout = new GridPane();
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.setVgap(10);
+        layout.setHgap(10);
         
-        //start
-        window.setScene(start);
-        window.show();
+        layout.getChildren().addAll(time, distance, health, hunger, thirst,
+        travel, rest, forage, viewInv, display);
+        layout.setAlignment(Pos.TOP_LEFT);
+        main = new Scene(layout,960,540);
+    }
+    
+    private void choice(int choice)
+    {
+        switch(choice)
+        {
+            case 1: game.choiceTravel(1);
+                    break;
+            case 2: game.choiceRest(1);
+                    break;
+            case 3: game.choiceForage(1);
+                    break;
+            case 4: inventory();
+                    break;
+        }
+        updateStatus();
+    }
+    
+    private void updateStatus()
+    {
+        distance.setText("Distance left: " + game.getDistance());
+        time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
+    }
+    
+    private void inventory()
+    {
     }
     
     public void handle(ActionEvent event)
     {
-        if(event.getSource() == null)
-            System.out.println("yo");
+        
     }
 }
