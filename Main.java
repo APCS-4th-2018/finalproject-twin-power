@@ -12,8 +12,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 {
     Stage window;
     Scene start, main;
-    Label time, distance;
-    TextField display;
+    Label time, distance, display;
     GameEdit game;
     
     public static void main(String[] args)
@@ -72,6 +71,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
         Label thirst = new Label("Thirst: ");
         GridPane.setConstraints(thirst, 0, 4);
         
+        //buttons for choices
         Button travel = new Button("Travel");
         travel.setOnAction(e -> choice(1));
         GridPane.setConstraints(travel,0,6);
@@ -88,8 +88,10 @@ public class Main extends Application implements EventHandler<ActionEvent>
         viewInv.setOnAction(e -> choice(4));
         GridPane.setConstraints(viewInv,0,9);
         
-        display = new TextField();
-        GridPane.setConstraints(display,1,5);
+        //prompt
+        display = new Label();
+        display.setWrapText(true);
+        GridPane.setConstraints(display,0,10);
         
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(20,20,20,20));
@@ -126,6 +128,8 @@ public class Main extends Application implements EventHandler<ActionEvent>
     
     private void inventory()
     {
+        display.setText(game.printInventory());
+        //other stuff
     }
     
     public void handle(ActionEvent event)

@@ -17,7 +17,7 @@ public class GameEdit
     private final int WIN_DISTANCE = 100;
     private Player player;
     private ArrayList<Item> inventory;
-    private ArrayList <Animal> animal = new ArrayList <Animal>();
+    private ArrayList<Animal> animal;
     private GrizzlyBear gb = new GrizzlyBear();
     private RattleSnake rs = new RattleSnake();
     private MountainLion ml = new MountainLion();
@@ -30,7 +30,9 @@ public class GameEdit
         day = 1;
         time = 8;
         distance = 0;
+        
         //construct and array of different animals for random generation each turn        
+        animal = new ArrayList <Animal>();
         animal.add(gb);
         animal.add(rs);
         animal.add(ml);
@@ -60,7 +62,7 @@ public class GameEdit
         distance += hours * player.getSpeed();
         player.changeHunger(-(double)hours/4);
         player.changeThirst(-(double)hours/2);
-        chanceEvent();
+        //chanceEvent();
     }
     
     //choice of resting
@@ -87,7 +89,7 @@ public class GameEdit
         String text = "Inventory";
         for(int count = 0; count < inventory.size(); count++)
         {
-            text += "\n(" + (count + 1) + ")" + inventory.get(count).getName();
+            text += "\n(" + (count + 1) + ") " + inventory.get(count).getName();
         }
         return text;
     }
@@ -104,7 +106,6 @@ public class GameEdit
             String mcD = "D. " + "Run away as fast as you can";
             
             int num1 = (int)(Math.random()*10);
-            
             
             if(num1 < 3)//Grizzly Bear Attack
 
@@ -191,7 +192,6 @@ public class GameEdit
                     item = new Food("apple");
                 else
                     item = new Water("bottle of water");
-                System.out.println("You found a(n) " + item.getName());
                 inventory.add(item);
             }
         }
