@@ -12,7 +12,8 @@ public class Main extends Application implements EventHandler<ActionEvent>
 {
     Stage window;
     Scene start, main;
-    Label time, distance, display;
+    Label time, distance, inventory;
+    ProgressBar health, hunger, thirst;
     GameEdit game;
     
     public static void main(String[] args)
@@ -60,16 +61,26 @@ public class Main extends Application implements EventHandler<ActionEvent>
     
     private void mainMenu()
     {
-        time = new Label("Day 1 8:00");
+        time = new Label("Day 1\n0:00");
         GridPane.setConstraints(time, 0, 0);
-        distance = new Label("Distance left: 0");
+        distance = new Label("Distance traveled: 0");
         GridPane.setConstraints(distance, 0, 1);
-        Label health = new Label("Health: ");
-        GridPane.setConstraints(health, 0, 2);
-        Label hunger = new Label("Hunger: ");
-        GridPane.setConstraints(hunger, 0, 3);
-        Label thirst = new Label("Thirst: ");
-        GridPane.setConstraints(thirst, 0, 4);
+        
+        //player stats
+        Label stat1 = new Label("Health: ");
+        GridPane.setConstraints(stat1, 0, 2);
+        health = new ProgressBar(1);
+        GridPane.setConstraints(health, 1, 2);
+        
+        Label stat2 = new Label("Hunger: ");
+        GridPane.setConstraints(stat2, 0, 3);
+        hunger = new ProgressBar(1);
+        GridPane.setConstraints(hunger, 1, 3);
+        
+        Label stat3 = new Label("Thirst: ");
+        GridPane.setConstraints(stat3, 0, 4);
+        thirst = new ProgressBar(1);
+        GridPane.setConstraints(thirst, 1, 4);
         
         //buttons for choices
         Button travel = new Button("Travel");
@@ -84,22 +95,23 @@ public class Main extends Application implements EventHandler<ActionEvent>
         forage.setOnAction(e -> choice(3));
         GridPane.setConstraints(forage,0,8);
         
-        Button viewInv = new Button("View Inventory");
-        viewInv.setOnAction(e -> choice(4));
-        GridPane.setConstraints(viewInv,0,9);
-        
-        //prompt
-        display = new Label();
-        display.setWrapText(true);
-        GridPane.setConstraints(display,0,10);
+        //inventory
+        inventory = new Label("Inventory:");
+        inventory.setWrapText(true);
+        GridPane.setConstraints(inventory,0,10);
+        TextField input = new TextField("Item #");
+        GridPane.setConstraints(input,0,11);
+        Button use = new Button("Use");
+        use.setOnAction(e -> inventory(input.getText()));
+        GridPane.setConstraints(use,1,11);
         
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(20,20,20,20));
         layout.setVgap(10);
         layout.setHgap(10);
         
-        layout.getChildren().addAll(time, distance, health, hunger, thirst,
-        travel, rest, forage, viewInv, display);
+        layout.getChildren().addAll(time, distance, stat1, health, stat2, 
+        hunger, stat3, thirst, travel, rest, forage, inventory, use, input);
         layout.setAlignment(Pos.TOP_LEFT);
         main = new Scene(layout,960,540);
     }
@@ -113,8 +125,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
             case 2: game.choiceRest(1);
                     break;
             case 3: game.choiceForage(1);
-                    break;
-            case 4: inventory();
+                    inventory.setText(game.printInventory()); //update inv
                     break;
         }
         updateStatus();
@@ -124,12 +135,17 @@ public class Main extends Application implements EventHandler<ActionEvent>
     {
         distance.setText("Distance left: " + game.getDistance());
         time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
+        
+        health.setProgress(game.getHealth()/10);
+        hunger.setProgress(game.getHunger()/10);
+        thirst.setProgress(game.getThirst()/10);
     }
     
-    private void inventory()
+    private void inventory(String i)
     {
-        display.setText(game.printInventory());
-        //other stuff
+        //game.useItem(i);
+        inventory.setText(game.printInventory()); //update inv
+        updateStatus();
     }
     
     public void handle(ActionEvent event)

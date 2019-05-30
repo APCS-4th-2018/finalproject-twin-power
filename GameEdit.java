@@ -28,7 +28,7 @@ public class GameEdit
         inventory = new ArrayList<Item>();
         keyboard = new ConsoleIO();
         day = 1;
-        time = 8;
+        time = 0;
         distance = 0;
         
         //construct and array of different animals for random generation each turn        
@@ -221,6 +221,9 @@ public class GameEdit
     public int getDistance() { return distance;}
     public int getDay() { return day;}
     public int getTime() { return time;}
+    public double getHealth() { return player.getHealth();}
+    public double getHunger() { return player.getHunger();}
+    public double getThirst() { return player.getThirst();}
     
     //prints the end game message
     private void endGame()
