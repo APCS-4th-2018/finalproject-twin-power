@@ -38,20 +38,11 @@ public class GameEdit
         animal.add(ml);
         
         System.out.println("Welcome, " + player.getName());
-        //explain the game here
         //while(player.isAlive() && distance < WIN_DISTANCE)
         {
             //turn();
         }
         endGame();
-    }
-    
-    //represents one turn
-    private void turn()
-    {
-        int choice;
-        System.out.println();
-        printStatus();
     }
     
     //choice of traveling
@@ -225,19 +216,21 @@ public class GameEdit
     public double getHunger() { return player.getHunger();}
     public double getThirst() { return player.getThirst();}
     
-    //prints the end game message
-    private void endGame()
+    //returns whether or not game has ended or not
+    public boolean endGame()
     {
-        //prints out the correct message
-        if(player.isAlive())
-        {
-            System.out.println("\n[WIN MESSAGE]");
-            System.out.println("You traveled " + WIN_DISTANCE + " kilometers in " + day + " days and " + time + " hours");
-        }
+        if(!player.isAlive() || distance >= WIN_DISTANCE)
+            return true;
         else
-        {
-            System.out.println("\n[LOST MESSAGE]");
-            System.out.println("You had " + (WIN_DISTANCE - distance) + " kilometers left");
-        }
+            return false;
+    }
+    
+    public String endingMessage()
+    {
+        if(player.isAlive())
+            return "YOU WON\n" + "You traveled " + WIN_DISTANCE + " in " +
+                      day + " days and " + time + " hours";
+        else
+            return "YOU DIED\n" + "You traveled " + distance;
     }
 }

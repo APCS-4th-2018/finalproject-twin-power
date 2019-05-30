@@ -11,7 +11,7 @@ import javafx.geometry.*;
 public class Main extends Application implements EventHandler<ActionEvent>
 {
     Stage window;
-    Scene start, main;
+    Scene start, main, end;
     Label time, distance, inventory;
     ProgressBar health, hunger, thirst;
     GameEdit game;
@@ -146,6 +146,14 @@ public class Main extends Application implements EventHandler<ActionEvent>
         //game.useItem(i);
         inventory.setText(game.printInventory()); //update inv
         updateStatus();
+    }
+    
+    private void endGame()
+    {
+        Label message = new Label(game.endingMessage());
+        
+        GridPane layout = new GridPane();
+        //layout.setAlignment(TOP_CENTER);
     }
     
     public void handle(ActionEvent event)
