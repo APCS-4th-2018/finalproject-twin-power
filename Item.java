@@ -8,4 +8,5 @@ public interface Item
 {
     public String getName();
     public void useItem(Player player);
+    public String toString();
 }

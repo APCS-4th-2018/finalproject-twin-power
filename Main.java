@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  * JavaFX stuff
  */
@@ -12,7 +14,9 @@ public class Main extends Application implements EventHandler<ActionEvent>
 {
     Stage window;
     Scene start, main, end;
-    Label time, distance, inventory;
+    Label time, distance;
+    ListView inventory;
+    ObservableList items;
     ProgressBar health, hunger, thirst;
     GameEdit game;
     
@@ -28,9 +32,6 @@ public class Main extends Application implements EventHandler<ActionEvent>
         
         //starting menu
         start();
-        
-        //main menu
-        mainMenu();
         
         window.setScene(start);
         window.show();
@@ -50,8 +51,8 @@ public class Main extends Application implements EventHandler<ActionEvent>
         GridPane.setConstraints(input,1,0);
         
         Button startButton = new Button("Start");
-        startButton.setOnAction(e -> {window.setScene(main); 
-                                      game = new GameEdit(input.getText());});
+        startButton.setOnAction(e -> {game = new GameEdit(input.getText());
+                                      mainMenu(); window.setScene(main);});
         GridPane.setConstraints(startButton,2,0);
         
         layout1.getChildren().addAll(label1, input, startButton);
@@ -61,7 +62,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
     
     private void mainMenu()
     {
-        time = new Label("Day 1\n0:00");
+        time = new Label("Day 1  0:00");
         GridPane.setConstraints(time, 0, 0);
         distance = new Label("Distance traveled: 0");
         GridPane.setConstraints(distance, 0, 1);
@@ -96,14 +97,18 @@ public class Main extends Application implements EventHandler<ActionEvent>
         GridPane.setConstraints(forage,0,8);
         
         //inventory
-        inventory = new Label("Inventory:");
-        inventory.setWrapText(true);
-        GridPane.setConstraints(inventory,0,10);
-        TextField input = new TextField("Item #");
-        GridPane.setConstraints(input,0,11);
+        Label inv = new Label("Inventory:");
+        GridPane.setConstraints(inv,0,10);
+        
+        items = FXCollections.observableArrayList(game.inventoryList());
+        inventory = new ListView(items);
+        inventory.setPrefHeight(200);
+        inventory.setPrefWidth(200);
+        GridPane.setConstraints(inventory,0,11);
+        
         Button use = new Button("Use");
-        use.setOnAction(e -> inventory(input.getText()));
-        GridPane.setConstraints(use,1,11);
+        use.setOnAction(e -> useInventory(inventory.getSelectionModel().getSelectedIndex()));
+        GridPane.setConstraints(use,0,12);
         
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(20,20,20,20));
@@ -111,7 +116,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
         layout.setHgap(10);
         
         layout.getChildren().addAll(time, distance, stat1, health, stat2, 
-        hunger, stat3, thirst, travel, rest, forage, inventory, use, input);
+        hunger, stat3, thirst, travel, rest, forage, inv, inventory, use);
         layout.setAlignment(Pos.TOP_LEFT);
         main = new Scene(layout,960,540);
     }
@@ -125,15 +130,17 @@ public class Main extends Application implements EventHandler<ActionEvent>
             case 2: game.choiceRest(1);
                     break;
             case 3: game.choiceForage(1);
-                    inventory.setText(game.printInventory()); //update inv
+                    updateInv();
                     break;
         }
         updateStatus();
+        if(game.endGame())
+            endGame();
     }
     
     private void updateStatus()
     {
-        distance.setText("Distance left: " + game.getDistance());
+        distance.setText("Distance traveled: " + game.getDistance());
         time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
         
         health.setProgress(game.getHealth()/10);
@@ -141,10 +148,16 @@ public class Main extends Application implements EventHandler<ActionEvent>
         thirst.setProgress(game.getThirst()/10);
     }
     
-    private void inventory(String i)
+    private void updateInv()
     {
-        //game.useItem(i);
-        inventory.setText(game.printInventory()); //update inv
+        items = FXCollections.observableArrayList(game.inventoryList());
+        inventory.setItems(items);
+    }
+    
+    private void useInventory(int i)
+    {
+        game.useItem(i);
+        updateInv();
         updateStatus();
     }
     
@@ -153,7 +166,14 @@ public class Main extends Application implements EventHandler<ActionEvent>
         Label message = new Label(game.endingMessage());
         
         GridPane layout = new GridPane();
-        //layout.setAlignment(TOP_CENTER);
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.setVgap(10);
+        layout.setHgap(10);
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().add(message);
+        
+        end = new Scene(layout,960,540);
+        window.setScene(end);
     }
     
     public void handle(ActionEvent event)

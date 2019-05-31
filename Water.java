@@ -16,4 +16,5 @@ public class Water implements Item
     {
         player.changeThirst(1);
     }
+    public String toString(){return name;}
 }

@@ -36,13 +36,6 @@ public class GameEdit
         animal.add(gb);
         animal.add(rs);
         animal.add(ml);
-        
-        System.out.println("Welcome, " + player.getName());
-        //while(player.isAlive() && distance < WIN_DISTANCE)
-        {
-            //turn();
-        }
-        endGame();
     }
     
     //choice of traveling
@@ -188,6 +181,11 @@ public class GameEdit
         }
     }
     
+    public List inventoryList()
+    {
+        return inventory;
+    }
+    
     //moves the time foward
     private void timeForward(int hours)
     {
@@ -228,9 +226,9 @@ public class GameEdit
     public String endingMessage()
     {
         if(player.isAlive())
-            return "YOU WON\n" + "You traveled " + WIN_DISTANCE + " in " +
+            return "YOU WON\n" + "You traveled " + WIN_DISTANCE + " km in " +
                       day + " days and " + time + " hours";
         else
-            return "YOU DIED\n" + "You traveled " + distance;
+            return "YOU DIED\n" + "You traveled " + distance + " km";
     }
 }
