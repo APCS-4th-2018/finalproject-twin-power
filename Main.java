@@ -5,12 +5,13 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 /**
- * JavaFX stuff
+ * JavaFX version
+ * 
+ * @author Sophia Du
  */
-public class Main extends Application implements EventHandler<ActionEvent>
+public class Main extends Application
 {
     Stage window;
     Scene start, main, end;
@@ -64,7 +65,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
     {
         time = new Label("Day 1  0:00");
         GridPane.setConstraints(time, 0, 0);
-        distance = new Label("Distance traveled: 0");
+        distance = new Label("Distance traveled: 0 km");
         GridPane.setConstraints(distance, 0, 1);
         
         //player stats
@@ -140,7 +141,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
     
     private void updateStatus()
     {
-        distance.setText("Distance traveled: " + game.getDistance());
+        distance.setText("Distance traveled: " + game.getDistance() + " km");
         time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
         
         health.setProgress(game.getHealth()/10);
@@ -174,10 +175,5 @@ public class Main extends Application implements EventHandler<ActionEvent>
         
         end = new Scene(layout,960,540);
         window.setScene(end);
-    }
-    
-    public void handle(ActionEvent event)
-    {
-        
     }
 }
