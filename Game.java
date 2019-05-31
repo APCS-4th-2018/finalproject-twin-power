@@ -14,7 +14,7 @@ public class Game
 {
     ConsoleIO keyboard = new ConsoleIO();
     private int day, distance, time;
-    private final int WIN_DISTANCE = 100;
+    private final int WIN_DISTANCE = 250;
     private Player player;
     private ArrayList<Item> inventory;
     private ArrayList <Animal> animal = new ArrayList <Animal>();
@@ -98,7 +98,7 @@ public class Game
         timeForward(hours);
         distance += hours * player.getSpeed();
         player.changeHunger(-(double)hours/4);
-        player.changeThirst(-(double)hours/2);
+        player.changeThirst(-(double)hours/4);
         chanceEvent();
     }
     
@@ -200,7 +200,7 @@ public class Game
                 String d = animal.get(0).getDescript();//grizzlybear
                 System.out.println(d);
                 //multiple choice questionnaire
-                System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
+                System.out.println( mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
                 String str = keyboard.readLine();//input answer choice
                 
                 if (!str.equals("A") && !str.equals("a"))//incorrect answer choice
@@ -215,7 +215,7 @@ public class Game
         
             }
             else
-                if(num1 >=3 && num1 < 6)//rattlesnake
+                if(num1 >=3 && num1 <= 6)//rattlesnake
                 {
                     String d = animal.get(1).getDescript();//rattlesnake
                     System.out.println(d);
@@ -234,7 +234,7 @@ public class Game
                         }
                 }
                 else
-                    if(num1 >= 6)//mountainlion
+                    if(num1 > 6)//mountainlion
                     {
                         String d = animal.get(2).getDescript();//mountainlion
                         System.out.println(d);
@@ -253,6 +253,12 @@ public class Game
                                 }
                     }
         }
+    }
+    
+    private void nextScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        
     }
     
     //uses a specific item at an index

@@ -7,7 +7,7 @@
 public class BlackBear extends Animal
 {
     
-    private String nameDescription;
+    private String nameDescription = "A Black Bear appeared. It is staring right at you with a hungry expression";
     private String solution = "Do not run. If you are in a group, "
                                + "gather together, stand tall, and make noise.";
 

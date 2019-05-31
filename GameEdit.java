@@ -45,7 +45,7 @@ public class GameEdit
         timeForward(hours);
         distance += hours * player.getSpeed();
         player.changeHunger(-(double)hours/4);
-        player.changeThirst(-(double)hours/2);
+        player.changeThirst(-(double)hours/4);
         //chanceEvent();
     }
     
