@@ -15,7 +15,7 @@ public class Food implements Item
     public String getName(){return name;}
     public void useItem(Player player)
     {
-        player.changeHunger(1);
+        player.changeHunger(1.5);
     }
     public String toString(){return name;}
 }

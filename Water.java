@@ -14,7 +14,7 @@ public class Water implements Item
     public String getName(){return name;}
     public void useItem(Player player)
     {
-        player.changeThirst(1);
+        player.changeThirst(1.5);
     }
     public String toString(){return name;}
 }
