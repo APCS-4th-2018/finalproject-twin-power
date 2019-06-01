@@ -18,9 +18,9 @@ public class GameEdit
     private Player player;
     private ArrayList<Item> inventory;
     private ArrayList<Animal> animal;
-    private GrizzlyBear gb = new GrizzlyBear();
-    private RattleSnake rs = new RattleSnake();
-    private MountainLion ml = new MountainLion();
+    private GrizzlyBear gb;
+    private RattleSnake rs;
+    private MountainLion ml;
     
     public GameEdit(String name)
     {
@@ -33,6 +33,9 @@ public class GameEdit
         
         //construct and array of different animals for random generation each turn        
         animal = new ArrayList <Animal>();
+        gb = new GrizzlyBear();
+        rs = new RattleSnake();
+        ml = new MountainLion();
         animal.add(gb);
         animal.add(rs);
         animal.add(ml);
