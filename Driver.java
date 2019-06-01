@@ -1,6 +1,6 @@
 import chn.util.*;
 /**
- * Write a description of class Driver here.
+ * BlueJ Terminal Version
  *
  * @author (your name)
  * @version (a version number or a date)

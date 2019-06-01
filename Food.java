@@ -17,4 +17,5 @@ public class Food implements Item
     {
         player.changeHunger(1.5);
     }
+    public String toString(){return name;}
 }
