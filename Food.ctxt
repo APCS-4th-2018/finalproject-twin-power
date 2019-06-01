@@ -1,12 +1,16 @@
 #BlueJ class context
 comment0.target=Food
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Food\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ A\ Food\ class\ that\ implements\ the\ Item\ interface\r\n\r\n\ @author\ \ Julia\ Du\r\n\ @version\ 06/01/19\r\n
 comment1.params=str
 comment1.target=Food(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ the\ Food\ class\r\n\ @param\ str\ \ \ the\ name\ of\ the\ Food\r\n
 comment2.params=
 comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Returns\ the\ name\ of\ the\ Food\r\n\ @return\ name\r\n
 comment3.params=player
 comment3.target=void\ useItem(Player)
+comment3.text=\r\n\ Uses\ the\ Food\ on\ a\ specified\ Player\r\n\ @param\ player\ \ \ \ the\ Player\ object\ the\ Food\ will\ be\ used\ on\r\n
 comment4.params=
 comment4.target=java.lang.String\ toString()
+comment4.text=\r\n\ Returns\ the\ name\ of\ the\ Food\r\n\ @return\ name\r\n
 numComments=5

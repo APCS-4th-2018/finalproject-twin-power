@@ -1,12 +1,24 @@
 /**
- * Write a description of interface Item here.
+ * Interface for Items in the Game
  *
- * @author 
- * @version (a version number or a date)
+ * @author  Julia Du
+ * @version 06/01/19
  */
 public interface Item
 {
+    /**
+     * Returns the name of the Item
+     */
     public String getName();
+    
+    /**
+     * Uses the Item on a specified Player
+     * @param player    a Player object the Item will be used on
+     */
     public void useItem(Player player);
+    
+    /**
+     * Returns the name of the Item
+     */
     public String toString();
 }
