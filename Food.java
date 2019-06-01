@@ -29,7 +29,7 @@ public class Food implements Item
      */
     public void useItem(Player player)
     {
-        player.changeHunger(1.5);
+        player.changeHunger(1);
     }
     
     /**

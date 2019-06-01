@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Main
-comment0.text=\r\n\ JavaFX\ version\r\n\ \r\n\ @author\ Sophia\ Du\r\n
+comment0.text=\r\n\ JavaFX\ version\r\n\ \r\n\ @author\ \ Sophia\ Du\r\n\ @version\ 06/01/19\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 comment2.params=primaryStage

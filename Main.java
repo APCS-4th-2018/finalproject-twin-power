@@ -9,7 +9,8 @@ import javafx.collections.*;
 /**
  * JavaFX version
  * 
- * @author Sophia Du
+ * @author  Sophia Du
+ * @version 06/01/19
  */
 public class Main extends Application
 {

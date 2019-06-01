@@ -7,7 +7,7 @@
 public class Water implements Item
 {
     private String name;
-    
+    private int amount;
     /**
      * Constructor for the Water class
      * @param str   the name of the Water
@@ -15,6 +15,7 @@ public class Water implements Item
     public Water(String str)
     {
         name = str;
+        amount = 0;
     }
     
     /**
@@ -29,12 +30,26 @@ public class Water implements Item
      */
     public void useItem(Player player)
     {
-        player.changeThirst(1.5);
+        player.changeThirst(1);
+        amount--;
+    }
+    
+    /**
+     * 
+     */
+    public int getAmount()
+    {
+        return amount;
+    }
+    
+    public void changeAmount(int liters)
+    {
+        amount += liters;
     }
     
     /**
      * Returns the name of the Water
      * @return name
      */
-    public String toString(){return name;}
+    public String toString(){return name + " (" + amount + " liters)";}
 }

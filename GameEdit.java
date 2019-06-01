@@ -28,6 +28,7 @@ public class GameEdit
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();
+        inventory.add(new Water("canteen of water"));
         keyboard = new ConsoleIO();
         day = 1;
         time = 0;
@@ -54,33 +55,11 @@ public class GameEdit
         player.changeHealth(-(double)hours/10);
         //chanceEvent();
     }
-    
-    /**
-     * When Player chooses to rest
-     * @param hours     the number of hours the Player will rest for
-     */
-    public void choiceRest(int hours)
+    //returns the speed of the player, which depends on their health and inventory
+    private double getSpeed()
     {
-        //move the time forward, regen health
-        timeForward(hours);
-        player.changeHealth(player.getHunger() * hours);
-        player.changeHunger(-(double)hours/20);
-        player.changeThirst(-(double)hours/10);
+        return (player.getHealth()/2) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
     }
-    
-    /**
-     * When Player chooses to forage for supplies
-     * @param hours     the number of hours the Player will forage for
-     */
-    public void choiceForage(int hours)
-    {
-        //move the time forward, change hunger/thirst, add items
-        timeForward(hours);
-        player.changeHunger(-(double)hours/10);
-        player.changeThirst(-(double)hours/5);
-        addItems(hours);
-    }
-    
     //determines a chance event when continuing
     private void chanceEvent()
     {
@@ -156,17 +135,32 @@ public class GameEdit
     }
     
     /**
-     * Uses a specific Item on the Player
-     * @param index     the index of the Item in inventory
+     * When Player chooses to rest
+     * @param hours     the number of hours the Player will rest for
      */
-    public void useItem(int index)
+    public void choiceRest(int hours)
     {
-        inventory.get(index).useItem(player);
-        inventory.remove(index);
+        //move the time forward, regen health
+        timeForward(hours);
+        player.changeHealth(player.getHunger() * hours);
+        player.changeHunger(-(double)hours/20);
+        player.changeThirst(-(double)hours/10);
     }
     
+    /**
+     * When Player chooses to forage for supplies
+     * @param hours     the number of hours the Player will forage for
+     */
+    public void choiceForage(int hours)
+    {
+        //move the time forward, change hunger/thirst, add items
+        timeForward(hours);
+        player.changeHunger(-(double)hours/10);
+        player.changeThirst(-(double)hours/5);
+        addRandomItems(hours);
+    }
     //determines which items are found while foraging
-    private void addItems(int hours)
+    private void addRandomItems(int hours)
     {
         //for every hour
         for(int h = 0; h < hours; h++)
@@ -175,15 +169,35 @@ public class GameEdit
             //the number of items found is by chance
             for(int n = 0; n < numItems; n++)
             {
-                Item item;
                 double random = Math.random();
                 //either find food or water
                 if(random < 0.5)
-                    item = new Food("apple");
+                    inventory.add(addRandomFood());
                 else
-                    item = new Water("bottle of water");
-                inventory.add(item);
+                {
+                    ((Water)inventory.get(0)).changeAmount(1);
+                }
             }
+        }
+    }
+    //determines the name of the food found
+    private Food addRandomFood()
+    {
+        String[] names = {"apple", "berries", "acorns", "pine nuts", "grasshopper", "lizard", "mushroom"};
+        String chosen = names[(int)(Math.random() * names.length)];
+        return new Food(chosen);
+    }
+    
+    /**
+     * Uses a specific Item on the Player
+     * @param index     the index of the Item in inventory
+     */
+    public void useItem(int index)
+    {
+        inventory.get(index).useItem(player);
+        if(index != 0)
+        {
+            inventory.remove(index);
         }
     }
     
@@ -212,29 +226,24 @@ public class GameEdit
      * @return distance
      */
     public double getDistance() { return distance;}
-    
     /**
      * Returns the current day in the Game
      * @return day
      */
     public int getDay() { return day;}
-    
     /**
      * Returns the current time in the Game
      * @return time
      */
     public int getTime() { return time;}
-    
     /**
      * Returns the current health of the Player
      */
     public double getHealth() { return player.getHealth();}
-    
     /**
      * Returns the current hunger level of the Player
      */
     public double getHunger() { return player.getHunger();}
-    
     /**
      * Returns the current thirst level of the Player
      */
