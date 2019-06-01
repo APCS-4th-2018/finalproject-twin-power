@@ -30,6 +30,7 @@ public class Main extends Application
     {
         window = primaryStage;
         window.setTitle("Game");
+        window.setOnCloseRequest(e -> System.exit(0));
         
         //starting menu
         start();
@@ -166,10 +167,8 @@ public class Main extends Application
     {
         Label message = new Label(game.endingMessage());
         
-        GridPane layout = new GridPane();
+        StackPane layout = new StackPane();
         layout.setPadding(new Insets(20,20,20,20));
-        layout.setVgap(10);
-        layout.setHgap(10);
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().add(message);
         
