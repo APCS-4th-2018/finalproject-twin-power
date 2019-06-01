@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=Item
-comment0.text=\r\n\ Write\ a\ description\ of\ interface\ Item\ here.\r\n\r\n\ @author\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Interface\ for\ Items\ in\ the\ Game\r\n\r\n\ @author\ \ Julia\ Du\r\n\ @version\ 06/01/19\r\n
 comment1.params=
 comment1.target=java.lang.String\ getName()
+comment1.text=\r\n\ Returns\ the\ name\ of\ the\ Item\r\n
 comment2.params=player
 comment2.target=void\ useItem(Player)
+comment2.text=\r\n\ Uses\ the\ Item\ on\ a\ specified\ Player\r\n\ @param\ player\ \ \ \ a\ Player\ object\ the\ Item\ will\ be\ used\ on\r\n
 comment3.params=
 comment3.target=java.lang.String\ toString()
+comment3.text=\r\n\ Returns\ the\ name\ of\ the\ Item\r\n
 numComments=4
