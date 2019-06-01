@@ -2,8 +2,9 @@ import javafx.application.Application;
 import javafx.event.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.*;
 import javafx.scene.layout.*;
+import javafx.scene.image.*;
+import javafx.stage.*;
 import javafx.geometry.*;
 import javafx.collections.*;
 /**
@@ -31,6 +32,7 @@ public class Main extends Application
         window = primaryStage;
         window.setTitle("Game");
         window.setOnCloseRequest(e -> System.exit(0));
+        //window.getIcons().add(new Image("file:icon.png"));
         
         //starting menu
         start();
@@ -41,10 +43,11 @@ public class Main extends Application
     
     private void start()
     {
-        GridPane layout1 = new GridPane();
-        layout1.setPadding(new Insets(10,10,10,10));
-        layout1.setVgap(8);
-        layout1.setHgap(10);
+        GridPane layout = new GridPane();
+        layout.setPadding(new Insets(10,10,10,10));
+        layout.setVgap(8);
+        layout.setHgap(10);
+        layout.setAlignment(Pos.CENTER);
         
         Label label1 = new Label("Enter name:");
         GridPane.setConstraints(label1,0,0);
@@ -57,35 +60,74 @@ public class Main extends Application
                                       mainMenu(); window.setScene(main);});
         GridPane.setConstraints(startButton,2,0);
         
-        layout1.getChildren().addAll(label1, input, startButton);
-        layout1.setAlignment(Pos.CENTER);
-        start = new Scene(layout1,960,540);
+        layout.getChildren().addAll(label1, input, startButton);
+        start = new Scene(layout,960,540);
     }
     
     private void mainMenu()
+    {
+        GridPane layout = new GridPane();
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.setVgap(10);
+        layout.setHgap(10);
+        layout.setAlignment(Pos.TOP_LEFT);
+        
+        //add time, distance, player stats
+        addStatus(layout);
+        
+        //buttons for choices
+        addChoices(layout);
+        
+        //inventory
+        addInventory(layout);
+        
+        main = new Scene(layout,960,540);
+    }
+    
+    private void addStatus(Pane layout)
     {
         time = new Label("Day 1  0:00");
         GridPane.setConstraints(time, 0, 0);
         distance = new Label("Distance traveled: 0 km");
         GridPane.setConstraints(distance, 0, 1);
         
-        //player stats
+        //health
         Label stat1 = new Label("Health: ");
         GridPane.setConstraints(stat1, 0, 2);
+        
         health = new ProgressBar(1);
         GridPane.setConstraints(health, 1, 2);
         
+        //ImageView heart = new ImageView("health.png");
+        //heart.setFitHeight(20);
+        //heart.setFitWidth(20);
+        //GridPane.setConstraints(heart, 2, 2);
+        
+        //hunger
         Label stat2 = new Label("Hunger: ");
         GridPane.setConstraints(stat2, 0, 3);
+        
         hunger = new ProgressBar(1);
         GridPane.setConstraints(hunger, 1, 3);
         
+        //ImageView food = new ImageView("hunger.png");
+        //food.setFitHeight(20);
+        //food.setFitWidth(20);
+        //GridPane.setConstraints(food, 2, 3);
+        
+        //thirst
         Label stat3 = new Label("Thirst: ");
         GridPane.setConstraints(stat3, 0, 4);
         thirst = new ProgressBar(1);
         GridPane.setConstraints(thirst, 1, 4);
         
-        //buttons for choices
+        layout.getChildren().addAll(time, distance);
+        layout.getChildren().addAll(stat1, health, stat2, 
+        hunger, stat3, thirst);
+    }
+    
+    private void addChoices(Pane layout)
+    {
         Button travel = new Button("Travel");
         travel.setOnAction(e -> choice(1));
         GridPane.setConstraints(travel,0,6);
@@ -98,7 +140,11 @@ public class Main extends Application
         forage.setOnAction(e -> choice(3));
         GridPane.setConstraints(forage,0,8);
         
-        //inventory
+        layout.getChildren().addAll(travel, rest, forage);
+    }
+    
+    private void addInventory(Pane layout)
+    {
         Label inv = new Label("Inventory:");
         GridPane.setConstraints(inv,0,10);
         
@@ -112,15 +158,7 @@ public class Main extends Application
         use.setOnAction(e -> useInventory(inventory.getSelectionModel().getSelectedIndex()));
         GridPane.setConstraints(use,0,12);
         
-        GridPane layout = new GridPane();
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.setVgap(10);
-        layout.setHgap(10);
-        
-        layout.getChildren().addAll(time, distance, stat1, health, stat2, 
-        hunger, stat3, thirst, travel, rest, forage, inv, inventory, use);
-        layout.setAlignment(Pos.TOP_LEFT);
-        main = new Scene(layout,960,540);
+        layout.getChildren().addAll(inv, inventory, use);
     }
     
     private void choice(int choice)
@@ -165,6 +203,12 @@ public class Main extends Application
     
     private void endGame()
     {
+        GridPane layout = new GridPane();
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.setVgap(8);
+        layout.setHgap(10);
+        layout.setAlignment(Pos.CENTER);
+        
         Label message = new Label(game.endingMessage());
         GridPane.setConstraints(message, 0, 0);
         
@@ -172,11 +216,7 @@ public class Main extends Application
         restart.setOnAction(e -> {window.setScene(start);});
         GridPane.setConstraints(restart, 0, 1);
         
-        GridPane layout = new GridPane();
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(message, restart);
-        
         end = new Scene(layout,960,540);
         window.setScene(end);
     }
