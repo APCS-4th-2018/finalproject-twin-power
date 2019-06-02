@@ -30,8 +30,11 @@ public class Water implements Item
      */
     public void useItem(Player player)
     {
-        player.changeThirst(1);
-        amount--;
+        if(amount > 0)
+        {
+            player.changeThirst(1);
+            amount--;
+        }
     }
     
     /**

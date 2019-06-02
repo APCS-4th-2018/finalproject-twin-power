@@ -11,7 +11,7 @@ import apcslib.*;
 import java.util.*;
 import java.lang.Math;
 import chn.util.*;
-public class GameEdit
+public class Game
 {
     ConsoleIO keyboard = new ConsoleIO();
     private int day, time;
@@ -24,7 +24,7 @@ public class GameEdit
     private RattleSnake rs;
     private MountainLion ml;
     
-    public GameEdit(String name)
+    public Game(String name)
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();
@@ -175,7 +175,9 @@ public class GameEdit
                 double random = Math.random();
                 //either find food or water
                 if(random < 0.5)
-                    inventory.add(addRandomFood());
+                {
+                    inventory.add(addRandomFood()); System.out.println("food");
+                }
                 else
                 {
                     ((Water)inventory.get(0)).changeAmount(1);
