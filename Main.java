@@ -4,9 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
+import javafx.scene.paint.*;
 import javafx.stage.*;
 import javafx.geometry.*;
 import javafx.collections.*;
+import apcslib.*;
 /**
  * JavaFX version
  * 
@@ -15,14 +17,14 @@ import javafx.collections.*;
  */
 public class Main extends Application
 {
-    final int WIDTH = 720;
-    final int HEIGHT = 405;
+    final int WIDTH = 800;
+    final int HEIGHT = 400;
     Stage window;
     Scene start, main, event, end;
     Label time, distance;
     ProgressBar health, hunger, thirst;
     ListView inventory;
-    ImageView background;
+    BackgroundImage background;
     Game game;
     
     public static void main(String[] args)
@@ -35,7 +37,7 @@ public class Main extends Application
         window = primaryStage;
         window.setTitle("Game");
         window.setOnCloseRequest(e -> System.exit(0));
-        //window.getIcons().add(new Image("icon.png"));
+        window.getIcons().add(new Image("/Graphics/SYMBOLS/app icon.png"));
         
         //starting menu
         start();
@@ -100,12 +102,16 @@ public class Main extends Application
     {
         //time + day
         time = new Label("Day " + game.getDay() + " " + game.getTime() + ":00");
+        time.setTextFill(Color.WHITE);
         GridPane.setConstraints(time,0,0,3,1);
-        distance = new Label(game.getDistance() + " km traveled");
+        
+        distance = new Label(Format.left(game.getDistance(),3,1) + " km traveled");
+        distance.setTextFill(Color.WHITE);
         GridPane.setConstraints(distance,0,1,3,1);
         
         //health
         Label stat1 = new Label("Health: ");
+        stat1.setTextFill(Color.WHITE);
         GridPane.setConstraints(stat1,0,3);
         
         health = new ColoredProgressBar("red-bar",game.getPlayer().getHealth()/10);
@@ -113,13 +119,15 @@ public class Main extends Application
         health.setPrefWidth(150);
         GridPane.setConstraints(health,1,3);
         
-        //ImageView heart = new ImageView("health.png");
-        //heart.setFitHeight(40);
-        //heart.setFitWidth(40);
-        //GridPane.setConstraints(heart,2,3);
+        ImageView heart = new ImageView("/Graphics/SYMBOLS/heart.png");
+        heart.setFitHeight(28);
+        heart.setFitWidth(28);
+        heart.setSmooth(false);
+        GridPane.setConstraints(heart,2,3);
         
         //hunger
         Label stat2 = new Label("Hunger: ");
+        stat2.setTextFill(Color.WHITE);
         GridPane.setConstraints(stat2,0,4);
         
         hunger = new ColoredProgressBar("chocolate-bar",game.getPlayer().getHunger()/10);
@@ -127,13 +135,15 @@ public class Main extends Application
         hunger.setPrefWidth(150);
         GridPane.setConstraints(hunger,1,4);
         
-        //ImageView food = new ImageView("hunger.png");
-        //food.setFitHeight(40);
-        //food.setFitWidth(40);
-        //GridPane.setConstraints(food,2,4);
+        ImageView food = new ImageView("/Graphics/SYMBOLS/hunger.png");
+        food.setFitHeight(28);
+        food.setFitWidth(28);
+        food.setSmooth(false);
+        GridPane.setConstraints(food,2,4);
         
         //thirst
         Label stat3 = new Label("Thirst: ");
+        stat3.setTextFill(Color.WHITE);
         GridPane.setConstraints(stat3,0,5);
         
         thirst = new ColoredProgressBar("aqua-bar",game.getPlayer().getThirst()/10);
@@ -141,15 +151,16 @@ public class Main extends Application
         thirst.setPrefWidth(150);
         GridPane.setConstraints(thirst,1,5);
         
-        //ImageView thirst = new ImageView("thirst.png");
-        //water.setFitHeight(40);
-        //water.setFitWidth(40);
-        //GridPane.setConstraints(water,2,5);
+        ImageView water = new ImageView("/Graphics/SYMBOLS/water.png");
+        water.setFitHeight(28);
+        water.setFitWidth(28);
+        water.setSmooth(false);
+        GridPane.setConstraints(water,2,5);
         
         layout.getChildren().addAll(time, distance);
-        layout.getChildren().addAll(stat1, health);
-        layout.getChildren().addAll(stat2, hunger);
-        layout.getChildren().addAll(stat3, thirst);
+        layout.getChildren().addAll(stat1, health, heart);
+        layout.getChildren().addAll(stat2, hunger, food);
+        layout.getChildren().addAll(stat3, thirst, water);
     }
     
     private void addChoices(Pane layout)
@@ -181,12 +192,13 @@ public class Main extends Application
     private void addInventory(Pane layout)
     {
         Label inv = new Label("Inventory:");
+        inv.setTextFill(Color.WHITE);
         GridPane.setConstraints(inv,5,0);
         
         ObservableList items = FXCollections.observableArrayList(game.inventoryList());
         inventory = new ListView(items);
         inventory.setPrefHeight(200);
-        inventory.setPrefWidth(200);
+        inventory.setPrefWidth(210);
         GridPane.setConstraints(inventory,5,1,1,8);
         
         Button use = new Button("Use");
@@ -203,12 +215,15 @@ public class Main extends Application
     {
         //empty middle space
         Label empty = new Label("");
-        empty.setPrefWidth(200);
+        empty.setPrefWidth(250);
         GridPane.setConstraints(empty,4,0);
         layout.getChildren().add(empty);
         
         //actual background
-        //background = new ImageView();
+        background = new BackgroundImage(new Image("/Graphics/DAY NIGHT CYCLE/0.png"),
+                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                     BackgroundPosition.CENTER, new BackgroundSize(WIDTH,HEIGHT,false,false,false,true));
+        layout.setBackground(new Background(background));
     }
     
     private void choice(int choice)
@@ -230,9 +245,17 @@ public class Main extends Application
     
     private void updateStatus()
     {
-        distance.setText(game.getDistance() + " km traveled");
+        //day and time
+        distance.setText(Format.left(game.getDistance(),3,1) + " km traveled");
         time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
         
+        //background
+        background = new BackgroundImage(new Image("/Graphics/DAY NIGHT CYCLE/" + game.getTime() + ".png"),
+                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                     BackgroundPosition.CENTER, new BackgroundSize(WIDTH,HEIGHT,false,false,false,true));
+        ((Pane)main.getRoot()).setBackground(new Background(background));
+        
+        //player stats
         health.setProgress(game.getPlayer().getHealth()/10);
         hunger.setProgress(game.getPlayer().getHunger()/10);
         thirst.setProgress(game.getPlayer().getThirst()/10);
@@ -260,6 +283,7 @@ public class Main extends Application
         layout.setVgap(8);
         layout.setHgap(10);
         layout.setAlignment(Pos.CENTER);
+        layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         
         Label message = new Label(game.endingMessage());
         message.setAlignment(Pos.CENTER);
