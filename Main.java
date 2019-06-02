@@ -24,7 +24,7 @@ public class Main extends Application
     Label time, distance;
     ProgressBar health, hunger, thirst;
     ListView inventory;
-    BackgroundImage background;
+    DynamicBackground background;
     Game game;
     
     public static void main(String[] args)
@@ -220,10 +220,8 @@ public class Main extends Application
         layout.getChildren().add(empty);
         
         //actual background
-        background = new BackgroundImage(new Image("/Graphics/DAY NIGHT CYCLE/0.png"),
-                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                     BackgroundPosition.CENTER, new BackgroundSize(WIDTH,HEIGHT,false,false,false,true));
-        layout.setBackground(new Background(background));
+        background = new DynamicBackground(24,WIDTH,HEIGHT,"/Graphics/DAY NIGHT CYCLE/",".png");
+        layout.setBackground(background.getBackground(game.getTime()));
     }
     
     private void choice(int choice)
@@ -250,10 +248,7 @@ public class Main extends Application
         time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
         
         //background
-        background = new BackgroundImage(new Image("/Graphics/DAY NIGHT CYCLE/" + game.getTime() + ".png"),
-                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                     BackgroundPosition.CENTER, new BackgroundSize(WIDTH,HEIGHT,false,false,false,true));
-        ((Pane)main.getRoot()).setBackground(new Background(background));
+        ((Pane)main.getRoot()).setBackground(background.getBackground(game.getTime()));
         
         //player stats
         health.setProgress(game.getPlayer().getHealth()/10);
@@ -264,8 +259,7 @@ public class Main extends Application
     private void updateInv()
     {
         inventory.setItems(null);
-        ObservableList items = FXCollections.observableArrayList(game.inventoryList());
-        inventory.setItems(items);
+        inventory.setItems(FXCollections.observableArrayList(game.inventoryList()));
     }
     
     private void useInventory(int i)

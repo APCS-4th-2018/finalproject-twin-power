@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=DynamicBackground
+comment1.params=num\ width\ height\ filePath\ fileType
+comment1.target=DynamicBackground(int,\ double,\ double,\ java.lang.String,\ java.lang.String)
+comment2.params=i
+comment2.target=javafx.scene.layout.Background\ getBackground(int)
+numComments=3
