@@ -40,7 +40,7 @@ public class Player
     /**
      * Returns the speed of the player, in km/hr, depending on the current health
      */
-    public double getSpeed() {return health/4;}
+    public double getSpeed() {return health/5;}
     /**
      * Returns the name of the player
      * @return name     the name of the player
