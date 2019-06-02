@@ -14,14 +14,14 @@ import javafx.collections.*;
  */
 public class Main extends Application
 {
-    final int WIDTH = 700;
-    final int HEIGHT = 375;
+    final int WIDTH = 720;
+    final int HEIGHT = 405;
     Stage window;
     Scene start, main, event, end;
     Label time, distance;
-    ListView inventory;
-    ObservableList items;
     ProgressBar health, hunger, thirst;
+    ListView inventory;
+    ImageView background;
     Game game;
     
     public static void main(String[] args)
@@ -76,9 +76,9 @@ public class Main extends Application
         layout.setPadding(new Insets(20,20,20,20));
         layout.setVgap(10);
         layout.setHgap(10);
-        layout.setAlignment(Pos.TOP_LEFT);
+        layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        layout.setGridLinesVisible(false);
+        layout.setGridLinesVisible(true);
         
         //add time, distance, player stats
         addStatus(layout);
@@ -88,6 +88,9 @@ public class Main extends Application
         
         //inventory
         addInventory(layout);
+        
+        //background
+        addBackground(layout);
         
         main = new Scene(layout,WIDTH,HEIGHT);
     }
@@ -177,22 +180,34 @@ public class Main extends Application
     private void addInventory(Pane layout)
     {
         Label inv = new Label("Inventory:");
-        GridPane.setConstraints(inv,4,0);
+        GridPane.setConstraints(inv,5,0);
         
-        items = FXCollections.observableArrayList(game.inventoryList());
+        ObservableList items = FXCollections.observableArrayList(game.inventoryList());
         inventory = new ListView(items);
         inventory.setPrefHeight(200);
         inventory.setPrefWidth(200);
-        GridPane.setConstraints(inventory,4,1,1,8);
+        GridPane.setConstraints(inventory,5,1,1,8);
         
         Button use = new Button("Use");
         use.setOnAction(e -> useInventory(inventory.getSelectionModel().getSelectedIndex()));
         use.setPrefHeight(40);
         use.setPrefWidth(80);
         use.setAlignment(Pos.CENTER);
-        GridPane.setConstraints(use,4,9);
+        GridPane.setConstraints(use,5,9);
         
         layout.getChildren().addAll(inv, inventory, use);
+    }
+    
+    private void addBackground(Pane layout)
+    {
+        //empty middle space
+        Label empty = new Label("");
+        empty.setPrefWidth(200);
+        GridPane.setConstraints(empty,4,0);
+        layout.getChildren().add(empty);
+        
+        //actual background
+        //background = new ImageView();
     }
     
     private void choice(int choice)
@@ -224,7 +239,7 @@ public class Main extends Application
     
     private void updateInv()
     {
-        items = FXCollections.observableArrayList(game.inventoryList());
+        ObservableList items = FXCollections.observableArrayList(game.inventoryList());
         inventory.setItems(items);
     }
     
