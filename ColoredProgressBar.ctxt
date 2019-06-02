@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ColoredProgressBar
+comment1.params=styleClass\ progress
+comment1.target=ColoredProgressBar(java.lang.String,\ double)
+numComments=2

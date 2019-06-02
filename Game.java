@@ -10,7 +10,7 @@ import apcslib.*;
 import java.util.*;
 import java.lang.Math;
 import chn.util.*;
-public class GameEdit
+public class Game
 {
     ConsoleIO keyboard = new ConsoleIO();
     private int day, distance, time;
@@ -22,7 +22,7 @@ public class GameEdit
     private RattleSnake rs;
     private MountainLion ml;
     
-    public GameEdit(String name)
+    public Game(String name)
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();
@@ -213,9 +213,7 @@ public class GameEdit
     public int getDistance() { return distance;}
     public int getDay() { return day;}
     public int getTime() { return time;}
-    public double getHealth() { return player.getHealth();}
-    public double getHunger() { return player.getHunger();}
-    public double getThirst() { return player.getThirst();}
+    public Player getPlayer() { return player;}
     
     //returns whether or not game has ended or not
     public boolean endGame()
