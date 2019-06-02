@@ -10,7 +10,7 @@ import apcslib.*;
 import java.util.*;
 import java.lang.Math;
 import chn.util.*;
-public class Game
+public class GameEdit
 {
     ConsoleIO keyboard = new ConsoleIO();
     private int day, distance, time;
@@ -22,7 +22,7 @@ public class Game
     private RattleSnake rs;
     private MountainLion ml;
     
-    public Game(String name)
+    public GameEdit(String name)
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();

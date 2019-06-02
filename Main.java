@@ -22,7 +22,7 @@ public class Main extends Application
     ProgressBar health, hunger, thirst;
     ListView inventory;
     ImageView background;
-    Game game;
+    GameEdit game;
     
     public static void main(String[] args)
     {
@@ -60,7 +60,7 @@ public class Main extends Application
         GridPane.setConstraints(input,1,0);
         
         Button startButton = new Button("Start");
-        startButton.setOnAction(e -> {game = new Game(input.getText());
+        startButton.setOnAction(e -> {game = new GameEdit(input.getText());
                                       mainMenu(); window.setScene(main);});
         startButton.setPrefHeight(40);
         startButton.setPrefWidth(80);

@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=Game
+comment0.target=GameEdit
 comment1.params=name
-comment1.target=Game(java.lang.String)
+comment1.target=GameEdit(java.lang.String)
 comment10.params=hours
 comment10.target=void\ timeForward(int)
 comment11.params=
