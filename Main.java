@@ -18,8 +18,16 @@ import apcslib.*;
  */
 public class Main extends Application
 {
-    final int WIDTH = 800;
-    final int HEIGHT = 400;
+    //sizes for window, buttons, progress bars, images, etc.
+    final int WIDTH = 1200;
+    final int HEIGHT = 600;
+    final int BUTTON_WIDTH = 100;
+    final int BUTTON_HEIGHT = 40;
+    final int BAR_WIDTH = 200;
+    final int BAR_HEIGHT = 30;
+    final int ICON_SIZE = 28;
+    final int SPACING = 20;
+    
     Stage window;
     Scene start, main, event, end;
     Label time, distance;
@@ -43,43 +51,46 @@ public class Main extends Application
         //starting menu
         start();
         
-        window.setScene(start);
         window.show();
     }
     
+    //creates starting screen
     private void start()
     {
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10,10,10,10));
-        layout.setVgap(8);
-        layout.setHgap(10);
+        layout.setHgap(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
         Label label = new Label("Enter name:");
         GridPane.setConstraints(label,0,0);
         
+        //input of name
         TextField input = new TextField();
-        input.setPrefHeight(40);
+        input.setPrefHeight(BUTTON_HEIGHT);
         GridPane.setConstraints(input,1,0);
         
+        //start button
         Button startButton = new Button("Start");
         startButton.setOnAction(e -> {game = new Game(input.getText());
-                                      mainMenu(); window.setScene(main);});
-        startButton.setPrefHeight(40);
-        startButton.setPrefWidth(80);
+                                      mainMenu();});
+        startButton.setPrefHeight(BUTTON_HEIGHT);
+        startButton.setPrefWidth(BUTTON_WIDTH);
         GridPane.setConstraints(startButton,2,0);
         
         layout.getChildren().addAll(label, input, startButton);
         start = new Scene(layout,WIDTH,HEIGHT);
+        window.setScene(start);
     }
     
+    //creates game interface
     private void mainMenu()
     {
         GridPane layout = new GridPane();
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.setVgap(10);
-        layout.setHgap(10);
+        layout.setVgap(SPACING);
+        layout.setHgap(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         layout.setGridLinesVisible(false);
@@ -97,6 +108,7 @@ public class Main extends Application
         addBackground(layout);
         
         main = new Scene(layout,WIDTH,HEIGHT);
+        window.setScene(main);
     }
     
     private void addStatus(Pane layout)
@@ -106,6 +118,7 @@ public class Main extends Application
         time.setTextFill(Color.WHITE);
         GridPane.setConstraints(time,0,0,3,1);
         
+        //distance
         distance = new Label(Format.left(game.getDistance(),3,1) + " km traveled");
         distance.setTextFill(Color.WHITE);
         GridPane.setConstraints(distance,0,1,3,1);
@@ -116,13 +129,13 @@ public class Main extends Application
         GridPane.setConstraints(stat1,0,3);
         
         health = new ColoredProgressBar("red-bar",game.getPlayer().getHealth()/10);
-        health.setPrefHeight(30);
-        health.setPrefWidth(150);
+        health.setPrefHeight(BAR_HEIGHT);
+        health.setPrefWidth(BAR_WIDTH);
         GridPane.setConstraints(health,1,3);
         
         ImageView heart = new ImageView("/Graphics/SYMBOLS/heart.png");
-        heart.setFitHeight(28);
-        heart.setFitWidth(28);
+        heart.setFitHeight(ICON_SIZE);
+        heart.setFitWidth(ICON_SIZE);
         heart.setSmooth(false);
         GridPane.setConstraints(heart,2,3);
         
@@ -132,13 +145,13 @@ public class Main extends Application
         GridPane.setConstraints(stat2,0,4);
         
         hunger = new ColoredProgressBar("chocolate-bar",game.getPlayer().getHunger()/10);
-        hunger.setPrefHeight(30);
-        hunger.setPrefWidth(150);
+        hunger.setPrefHeight(BAR_HEIGHT);
+        hunger.setPrefWidth(BAR_WIDTH);
         GridPane.setConstraints(hunger,1,4);
         
         ImageView food = new ImageView("/Graphics/SYMBOLS/hunger.png");
-        food.setFitHeight(28);
-        food.setFitWidth(28);
+        food.setFitHeight(ICON_SIZE);
+        food.setFitWidth(ICON_SIZE);
         food.setSmooth(false);
         GridPane.setConstraints(food,2,4);
         
@@ -148,13 +161,13 @@ public class Main extends Application
         GridPane.setConstraints(stat3,0,5);
         
         thirst = new ColoredProgressBar("aqua-bar",game.getPlayer().getThirst()/10);
-        thirst.setPrefHeight(30);
-        thirst.setPrefWidth(150);
+        thirst.setPrefHeight(BAR_HEIGHT);
+        thirst.setPrefWidth(BAR_WIDTH);
         GridPane.setConstraints(thirst,1,5);
         
         ImageView water = new ImageView("/Graphics/SYMBOLS/water.png");
-        water.setFitHeight(28);
-        water.setFitWidth(28);
+        water.setFitHeight(ICON_SIZE);
+        water.setFitWidth(ICON_SIZE);
         water.setSmooth(false);
         GridPane.setConstraints(water,2,5);
         
@@ -166,24 +179,27 @@ public class Main extends Application
     
     private void addChoices(Pane layout)
     {
+        //travel
         Button travel = new Button("Travel");
         travel.setOnAction(e -> choice(1));
-        travel.setPrefHeight(40);
-        travel.setPrefWidth(80);
+        travel.setPrefHeight(BUTTON_HEIGHT);
+        travel.setPrefWidth(BUTTON_WIDTH);
         travel.setAlignment(Pos.CENTER);
         GridPane.setConstraints(travel,0,7,3,1);
         
+        //rest
         Button rest = new Button("Rest");
         rest.setOnAction(e -> choice(2));
-        rest.setPrefHeight(40);
-        rest.setPrefWidth(80);
+        rest.setPrefHeight(BUTTON_HEIGHT);
+        rest.setPrefWidth(BUTTON_WIDTH);
         rest.setAlignment(Pos.CENTER);
         GridPane.setConstraints(rest,0,8,3,1);
         
+        //forage
         Button forage = new Button("Forage");
         forage.setOnAction(e -> choice(3));
-        forage.setPrefHeight(40);
-        forage.setPrefWidth(80);
+        forage.setPrefHeight(BUTTON_HEIGHT);
+        forage.setPrefWidth(BUTTON_WIDTH);
         forage.setAlignment(Pos.CENTER);
         GridPane.setConstraints(forage,0,9,3,1);
         
@@ -196,16 +212,18 @@ public class Main extends Application
         inv.setTextFill(Color.WHITE);
         GridPane.setConstraints(inv,5,0);
         
+        //list of items in inventory
         ObservableList items = FXCollections.observableArrayList(game.inventoryList());
         inventory = new ListView(items);
         inventory.setPrefHeight(200);
-        inventory.setPrefWidth(210);
+        inventory.setPrefWidth(300);
         GridPane.setConstraints(inventory,5,1,1,8);
         
+        //button to use selected item
         Button use = new Button("Use");
-        use.setOnAction(e -> useInventory(inventory.getSelectionModel().getSelectedIndex()));
-        use.setPrefHeight(40);
-        use.setPrefWidth(80);
+        use.setOnAction(e -> choice(4));
+        use.setPrefHeight(BUTTON_HEIGHT);
+        use.setPrefWidth(BUTTON_WIDTH);
         use.setAlignment(Pos.CENTER);
         GridPane.setConstraints(use,5,9);
         
@@ -216,7 +234,7 @@ public class Main extends Application
     {
         //empty middle space
         Label empty = new Label("");
-        empty.setPrefWidth(250);
+        empty.setPrefWidth(350);
         GridPane.setConstraints(empty,4,0);
         layout.getChildren().add(empty);
         
@@ -236,9 +254,12 @@ public class Main extends Application
             case 3: game.choiceForage(1);
                     updateInv();
                     break;
+            case 4: game.useItem(inventory.getSelectionModel().getSelectedIndex());
+                    updateInv();
+                    break;
         }
         updateStatus();
-        if(game.endGame())
+        if(game.endGame()) //game has ended
             endGame();
     }
     
@@ -263,20 +284,14 @@ public class Main extends Application
         inventory.setItems(FXCollections.observableArrayList(game.inventoryList()));
     }
     
-    private void useInventory(int i)
-    {
-        if(i >= 0)
-            game.useItem(i);
-        updateInv();
-        updateStatus();
-    }
-    
+    //creates new scene for ending screen
     private void endGame()
     {
         VBox layout = new VBox();
-        layout.setPadding(new Insets(30,30,30,30));
         layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(SPACING);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
         //end game message (win/lose)
         String temp;
@@ -289,7 +304,7 @@ public class Main extends Application
         message.setTextAlignment(TextAlignment.CENTER);
         GridPane.setConstraints(message, 0, 0);
         
-        //restart game
+        //button to restart game
         Button restart = new Button("Play Again");
         restart.setOnAction(e -> {window.setScene(start);});
         restart.setAlignment(Pos.CENTER);

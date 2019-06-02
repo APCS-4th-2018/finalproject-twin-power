@@ -195,9 +195,12 @@ public class Game
      */
     public void useItem(int index)
     {
-        inventory.get(index).useItem(player);
-        if(index != 0)
-            inventory.remove(index);
+        if(index >= 0)
+        {
+            inventory.get(index).useItem(player);
+            if(index != 0)
+                inventory.remove(index);
+        }
     }
     
     /**
