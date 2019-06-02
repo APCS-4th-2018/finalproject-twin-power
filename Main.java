@@ -240,6 +240,7 @@ public class Main extends Application
     
     private void updateInv()
     {
+        inventory.setItems(null);
         ObservableList items = FXCollections.observableArrayList(game.inventoryList());
         inventory.setItems(items);
     }

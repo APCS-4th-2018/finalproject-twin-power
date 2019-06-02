@@ -52,7 +52,7 @@ public class Game
     {
         //move time forward, change distance, change hunger/thirst, chance event
         timeForward(hours);
-        distance += hours * player.getSpeed();
+        distance += hours * getSpeed();
         player.changeHunger(-(double)hours/5);
         player.changeThirst(-(double)hours/2);
         player.changeHealth(-(double)hours/10);
@@ -61,7 +61,7 @@ public class Game
     //returns the speed of the player, which depends on their health and inventory
     private double getSpeed()
     {
-        return (player.getHealth()/2) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
+        return (player.getHealth()/2.0) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
     }
     //determines a chance event when continuing
     private void chanceEvent()
@@ -145,7 +145,7 @@ public class Game
     {
         //move the time forward, regen health
         timeForward(hours);
-        player.changeHealth(player.getHunger() * hours);
+        player.changeHealth(player.getHunger() * hours / 2);
         player.changeHunger(-(double)hours/20);
         player.changeThirst(-(double)hours/10);
     }
@@ -175,13 +175,9 @@ public class Game
                 double random = Math.random();
                 //either find food or water
                 if(random < 0.5)
-                {
-                    inventory.add(addRandomFood()); System.out.println("food");
-                }
+                    inventory.add(addRandomFood());
                 else
-                {
                     ((Water)inventory.get(0)).changeAmount(1);
-                }
             }
         }
     }
@@ -201,9 +197,7 @@ public class Game
     {
         inventory.get(index).useItem(player);
         if(index != 0)
-        {
             inventory.remove(index);
-        }
     }
     
     /**
@@ -226,6 +220,12 @@ public class Game
         }
     }
     
+    private void forceUpdate()
+    {
+        Water temp = (Water)inventory.get(0);
+        inventory.remove(0);
+        inventory.add(0, temp);
+    }
     /**
      * Returns the current distance traveled by the Player
      * @return distance
