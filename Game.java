@@ -61,7 +61,7 @@ public class Game
     //returns the speed of the player, which depends on their health and inventory
     private double getSpeed()
     {
-        return (player.getHealth()/2.0) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
+        return (player.getHealth()/5.0) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
     }
     //determines a chance event when continuing
     private void chanceEvent()
@@ -257,7 +257,7 @@ public class Game
             end = false;
         return end;
     }
-    
+
     /**
      * Returns a String representation of the ending game message
      * Displays the distance traveled and time passed if won

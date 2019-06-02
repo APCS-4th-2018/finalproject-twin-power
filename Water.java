@@ -32,7 +32,7 @@ public class Water implements Item
     {
         if(amount > 0)
         {
-            player.changeThirst(1);
+            player.changeThirst(2);
             amount--;
         }
     }
