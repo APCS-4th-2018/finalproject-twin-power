@@ -1,0 +1,7 @@
+.root{
+     -fx-background-color: #d8ffe8;
+     -fx-font-size: 12pt;
+ }
+.aqua-bar { -fx-accent: aqua; }
+.chocolate-bar { -fx-accent: chocolate; }
+.red-bar    { -fx-accent: red;    }

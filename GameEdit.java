@@ -20,9 +20,9 @@ public class GameEdit
     private Player player;
     private ArrayList<Item> inventory;
     private ArrayList<Animal> animal;
-    private GrizzlyBear gb = new GrizzlyBear();
-    private RattleSnake rs = new RattleSnake();
-    private MountainLion ml = new MountainLion();
+    private GrizzlyBear gb;
+    private RattleSnake rs;
+    private MountainLion ml;
     
     public GameEdit(String name)
     {
@@ -36,6 +36,9 @@ public class GameEdit
         
         //construct and array of different animals for random generation each turn        
         animal = new ArrayList <Animal>();
+        gb = new GrizzlyBear();
+        rs = new RattleSnake();
+        ml = new MountainLion();
         animal.add(gb);
         animal.add(rs);
         animal.add(ml);
@@ -236,18 +239,8 @@ public class GameEdit
      * @return time
      */
     public int getTime() { return time;}
-    /**
-     * Returns the current health of the Player
-     */
-    public double getHealth() { return player.getHealth();}
-    /**
-     * Returns the current hunger level of the Player
-     */
-    public double getHunger() { return player.getHunger();}
-    /**
-     * Returns the current thirst level of the Player
-     */
-    public double getThirst() { return player.getThirst();}
+
+    public Player getPlayer() { return player;}
     
     /**
      * Determines whether or not the game has ended (if the Player died or reached the destination)
