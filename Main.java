@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
+import javafx.scene.text.*;
 import javafx.stage.*;
 import javafx.geometry.*;
 import javafx.collections.*;
@@ -272,17 +273,23 @@ public class Main extends Application
     
     private void endGame()
     {
-        GridPane layout = new GridPane();
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.setVgap(8);
-        layout.setHgap(10);
+        VBox layout = new VBox();
+        layout.setPadding(new Insets(30,30,30,30));
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         
-        Label message = new Label(game.endingMessage());
-        message.setAlignment(Pos.CENTER);
+        //end game message (win/lose)
+        String temp;
+        if(game.getPlayer().isAlive()) //player is alive = win
+            temp = "YOU WON\n" + "You traveled " + game.getWinDistance() + " km in " +
+                      game.getDay() + " days and " + time + " hours";
+        else //player is dead = lose
+            temp = "YOU DIED\n" + "You traveled " + Format.left(game.getDistance(),3,1) + " km";
+        Label message = new Label(temp);
+        message.setTextAlignment(TextAlignment.CENTER);
         GridPane.setConstraints(message, 0, 0);
         
+        //restart game
         Button restart = new Button("Play Again");
         restart.setOnAction(e -> {window.setScene(start);});
         restart.setAlignment(Pos.CENTER);

@@ -1,5 +1,6 @@
 /**
- * Write a description of class DynamicBackground here.
+ * Class to faciliate changing background images.
+ * Requires image files to be named from 0, 1, ..., n-1.
  *
  * @author (Sophia Du)
  * @version (190601)
@@ -10,6 +11,15 @@ public class DynamicBackground
 {
     Background[] bg;
     
+    /**
+     * Creates a new DynamicBackground object.
+     * 
+     * @param   num         Number of backgrounds.
+     * @param   width       Width of the background.
+     * @param   height      Height of the background.
+     * @param   filePath    Path of the file (up to/before actual file name).
+     * @param   fileType    Type of the file (ex. .png or .jpg).
+     */
     public DynamicBackground(int num, double width, double height, String filePath, String fileType)
     {
         bg = new Background[num];
@@ -21,6 +31,13 @@ public class DynamicBackground
             bg[i] = new Background(img);
         }
     }
+    
+    /**
+     * Returns the Background at the given index.
+     * 
+     * @param   i   The index of the Background.
+     * @return  The background.
+     */
     public Background getBackground(int i)
     {
         return bg[i];

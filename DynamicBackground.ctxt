@@ -2,6 +2,8 @@
 comment0.target=DynamicBackground
 comment1.params=num\ width\ height\ filePath\ fileType
 comment1.target=DynamicBackground(int,\ double,\ double,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Creates\ a\ new\ DynamicBackground\ object.\r\n\ \r\n\ @param\ \ \ num\ \ \ \ \ \ \ \ \ Number\ of\ backgrounds.\r\n\ @param\ \ \ width\ \ \ \ \ \ \ Width\ of\ the\ background.\r\n\ @param\ \ \ height\ \ \ \ \ \ Height\ of\ the\ background.\r\n\ @param\ \ \ filePath\ \ \ \ Path\ of\ the\ file\ (up\ to/before\ actual\ file\ name).\r\n\ @param\ \ \ fileType\ \ \ \ Type\ of\ the\ file\ (ex.\ .png\ or\ .jpg).\r\n
 comment2.params=i
 comment2.target=javafx.scene.layout.Background\ getBackground(int)
+comment2.text=\r\n\ Returns\ the\ Background\ at\ the\ given\ index.\r\n\ \r\n\ @param\ \ \ i\ \ \ The\ index\ of\ the\ Background.\r\n\ @return\ \ The\ background.\r\n
 numComments=3

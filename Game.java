@@ -259,16 +259,10 @@ public class Game
     }
 
     /**
-     * Returns a String representation of the ending game message
-     * Displays the distance traveled and time passed if won
-     * Displays the distance traveled if lost
+     * Returns the distance needed to win the game.
      */
-    public String endingMessage()
+    public int getWinDistance()
     {
-        if(player.isAlive())
-            return "YOU WON\n" + "You traveled " + WIN_DISTANCE + " km in " +
-                      day + " days and " + time + " hours";
-        else
-            return "YOU DIED\n" + "You traveled " + distance + " km";
+        return WIN_DISTANCE;
     }
 }
