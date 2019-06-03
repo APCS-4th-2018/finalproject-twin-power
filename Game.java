@@ -13,24 +13,19 @@ import java.lang.Math;
 import chn.util.*;
 public class Game
 {
-    ConsoleIO keyboard = new ConsoleIO();
     private int day, time;
     private double distance;
     private final int WIN_DISTANCE = 100;
     private Player player;
     private ArrayList<Item> inventory;
     private ArrayList<Animal> animal;
-    private GrizzlyBear gb;
-    private RattleSnake rs;
-    private MountainLion ml;
     
     public Game(String name)
     {
         player = new Player(name);
         inventory = new ArrayList<Item>();
         inventory.add(new Water("canteen of water"));
-        keyboard = new ConsoleIO();
-        day = 1;
+        day = 0;
         time = 0;
         distance = 0;
         
@@ -60,7 +55,11 @@ public class Game
     //returns the speed of the player, which depends on their health and inventory
     private double getSpeed()
     {
-        return (player.getHealth()/5.0) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
+        double speed = ((double)player.getHealth() / 5) - (((Water)inventory.get(0)).getAmount()) * 0.1;
+        if(speed <= 0.1)
+            return 0.1;
+        else
+            return speed;
     }
     
     //determines a chance event when continuing
@@ -79,7 +78,7 @@ public class Game
     
     public boolean correctChoice(int choice, Animal a) { return a.equals(animal.get(choice));}
     
-    public void killPlayer() { player.changeHealth(-10);}
+    public void killPlayer() { player.changeHealth(-8);}
     
     /**
      * When Player chooses to rest

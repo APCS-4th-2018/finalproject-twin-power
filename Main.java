@@ -113,7 +113,7 @@ public class Main extends Application
     private void addStatus(Pane layout)
     {
         //time + day
-        time = new Label("Day " + game.getDay() + " " + game.getTime() + ":00");
+        time = new Label("Day " + (game.getDay() + 1) + " " + game.getTime() + ":00");
         time.setTextFill(Color.WHITE);
         GridPane.setConstraints(time,0,0,3,1);
         
@@ -256,7 +256,7 @@ public class Main extends Application
             case 4: game.useItem(inventory.getSelectionModel().getSelectedIndex());
                     break;
         }
-        delay(1);
+        //delay(0.5);
         updateStatus();
         updateInv();
         if(game.endGame()) //game has ended
@@ -267,7 +267,7 @@ public class Main extends Application
     {
         //day and time
         distance.setText(Format.left(game.getDistance(),3,1) + " km traveled");
-        time.setText("Day " + game.getDay() + " " + game.getTime() + ":00");
+        time.setText("Day " + (game.getDay() + 1) + " " + game.getTime() + ":00");
         
         //background
         ((Pane)main.getRoot()).setBackground(background.getBackground(game.getTime()));
@@ -313,7 +313,7 @@ public class Main extends Application
             
             //button to choose
             Button choose = new Button("Choose");
-            choose.setOnAction(e -> {delay(1); finishEvent(animal,choices.getSelectionModel().getSelectedIndex());});
+            choose.setOnAction(e -> {finishEvent(animal,choices.getSelectionModel().getSelectedIndex());});
             choose.setPrefHeight(BUTTON_HEIGHT);
             choose.setPrefWidth(BUTTON_WIDTH);
             choose.setAlignment(Pos.CENTER);
@@ -334,7 +334,8 @@ public class Main extends Application
             else
             {
                 game.killPlayer();
-                endGame();
+                if(game.endGame()) //game has ended
+                    endGame();
             }
         }
     }
@@ -370,9 +371,9 @@ public class Main extends Application
         window.setScene(end);
     }
     
-    private void delay(int seconds)
+    private void delay(double seconds)
     {
-        try { Thread.sleep(seconds * 1000);}
+        try { Thread.sleep((int)(seconds * 1000));}
         catch(Exception e) {}
     }
 }
