@@ -290,19 +290,27 @@ public class Main extends Application
         {
             GridPane layout = new GridPane();
             layout.setVgap(SPACING);
+            layout.setHgap(SPACING);
             layout.setAlignment(Pos.CENTER);
             layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
+            layout.setBackground(background.getBackground(game.getTime()));
             
             //event description
             Label description = new Label(animal.getDescript());
-            description.setTextAlignment(TextAlignment.CENTER);
-            GridPane.setConstraints(description,0,0);
+            description.setWrapText(true);
+            description.setTextFill(Color.WHITE);
+            description.setPrefWidth(500);
+            GridPane.setConstraints(description,0,0,2,1);
             
             //choices
+            Label select = new Label("Select Action:");
+            select.setTextFill(Color.WHITE);
+            GridPane.setConstraints(select,0,2);
+            
             ChoiceBox choices = new ChoiceBox(FXCollections.observableArrayList(game.getAnimals()));
+            choices.setPrefWidth(300);
             choices.setTooltip(new Tooltip("Select Action"));
-            GridPane.setConstraints(choices,0,1);
+            GridPane.setConstraints(choices,1,2);
             
             //button to choose
             Button choose = new Button("Choose");
@@ -310,9 +318,9 @@ public class Main extends Application
             choose.setPrefHeight(BUTTON_HEIGHT);
             choose.setPrefWidth(BUTTON_WIDTH);
             choose.setAlignment(Pos.CENTER);
-            GridPane.setConstraints(choose,0,2);
+            GridPane.setConstraints(choose,0,3,2,1);
             
-            layout.getChildren().addAll(description,choices,choose);
+            layout.getChildren().addAll(description,select,choices,choose);
             event = new Scene(layout,WIDTH,HEIGHT);
             window.setScene(event);
         }
@@ -320,12 +328,15 @@ public class Main extends Application
     
     private void finishEvent(Animal animal, int choice)
     {
-        if(game.correctChoice(choice, animal))
-            window.setScene(main);
-        else
+        if(choice >= 0)
         {
-            game.killPlayer();
-            endGame();
+            if(game.correctChoice(choice, animal))
+                window.setScene(main);
+            else
+            {
+                game.killPlayer();
+                endGame();
+            }
         }
     }
     

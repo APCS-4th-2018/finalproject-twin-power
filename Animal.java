@@ -6,14 +6,18 @@
  */
 public abstract class Animal
 {
-    private String nameDescription;
-    private String solution;
-    private String mcSolution;
+    protected String nameDescription;
+    protected String solution;
+    protected String explanation;
 
-    public Animal ()
+    public Animal (String nd, String s, String e)
     {
+        nameDescription = nd;
+        solution = s;
+        explanation = e;
     }
     
-    public abstract boolean compareTo(String str);
-    public abstract String getDescript();
+    public String getDescript() { return nameDescription;}
+    public String getSolution() { return solution;}
+    public String toString() { return getSolution();}
 }

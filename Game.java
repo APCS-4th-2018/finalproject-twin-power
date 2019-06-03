@@ -36,12 +36,10 @@ public class Game
         
         //construct and array of different animals for random generation each turn        
         animal = new ArrayList <Animal>();
-        gb = new GrizzlyBear();
-        rs = new RattleSnake();
-        ml = new MountainLion();
-        animal.add(gb);
-        animal.add(rs);
-        animal.add(ml);
+        animal.add(new MountainLion());
+        animal.add(new RattleSnake());
+        animal.add(new GrizzlyBear());
+        animal.add(new BlackBear());
     }
     
     /**
@@ -58,6 +56,7 @@ public class Game
         player.changeHealth(-(double)hours/10);
         //chanceEvent();
     }
+    
     //returns the speed of the player, which depends on their health and inventory
     private double getSpeed()
     {
@@ -71,101 +70,16 @@ public class Game
         if(random < 2) //event occurs
         {
             random = (int)(Math.random()*animal.size());
-            switch(random)
-            {
-                case 0: return animal.get(0);
-                case 1: return animal.get(1);
-                case 2: return animal.get(2);
-                case 3: return animal.get(2);
-            }
+            return animal.get(random);
         }
         return null; //no event
     }
     
     public List getAnimals() { return animal;}
     
-    public boolean correctChoice(int choice, Animal a)
-    {
-        return a.equals(animal.get(choice));
-    }
+    public boolean correctChoice(int choice, Animal a) { return a.equals(animal.get(choice));}
     
-    public void killPlayer()
-    {
-        player.changeHealth(-10);
-    }
-    
-    private void chanceEvent()
-    {
-        int num = (int)(Math.random()*11);
-        if(num <= 5)
-        {
-            String mcA = "A. " + gb.getMC();//grizzlybear solution
-            String mcB = "B. " + rs.getMC();//rattlesnake solution
-            String mcC = "C. " + ml.getMC();//mountain lion solution
-            String mcD = "D. " + "Run away as fast as you can";
-            
-            int num1 = (int)(Math.random()*10);
-            
-            if(num1 < 3)//Grizzly Bear Attack
-
-            {
-                String d = animal.get(0).getDescript();//grizzlybear
-                System.out.println(d);
-                //multiple choice questionnaire
-                System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
-                String str = keyboard.readLine();//input answer choice
-                
-                if (!str.equals("A") && !str.equals("a"))//incorrect answer choice
-                {
-                    player.changeHealth(-10.0);//player dies
-                    System.out.println("Incorrect, you got attacked by a Grizzly Bear and got killed: " +gb.getSolution());
-                }
-                    else
-                    {
-                        System.out.print("Correct!" + gb.getSolution());
-                    }
-        
-            }
-            else
-                if(num1 >=3 && num1 < 6)//rattlesnake
-                {
-                    String d = animal.get(1).getDescript();//rattlesnake
-                    System.out.println(d);
-                    //multiple choice questionnaire
-                    System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
-                    String str = keyboard.readLine();//input answer choice
-                
-                    if (!str.equals("B") && !str.equals("b"))//incorrect answer choice
-                    {
-                        player.changeHealth(-10.0);//player dies
-                        System.out.println("Incorrect, you got bit by a Rattlesnake and got killed: " + rs.getSolution());
-                    }
-                        else
-                        {
-                            System.out.print("Correct!" + rs.getSolution());
-                        }
-                }
-                else
-                    if(num1 >= 6)//mountainlion
-                    {
-                        String d = animal.get(2).getDescript();//mountainlion
-                        System.out.println(d);
-                        //multiple choice questionnaire
-                        System.out.println(mcA + "\n" + mcB + "\n" +  mcC + "\n" + mcD);
-                        String str = keyboard.readLine();//input answer choice
-                
-                            if (!str.equals("C") && !str.equals("c"))//incorrect answer choice
-                            {
-                                player.changeHealth(-10.0);//player dies
-                                System.out.println("Incorrect, you got attacked by a Mountain Lion and got killed: " + ml.getSolution());
-                            }
-                                else
-                                {
-                                    System.out.print("Correct!" + ml.getSolution());
-                                }
-                    }
-        }
-    }
+    public void killPlayer() { player.changeHealth(-10);}
     
     /**
      * When Player chooses to rest
