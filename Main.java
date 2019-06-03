@@ -58,7 +58,6 @@ public class Main extends Application
     private void start()
     {
         GridPane layout = new GridPane();
-        layout.setPadding(new Insets(10,10,10,10));
         layout.setHgap(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -248,6 +247,7 @@ public class Main extends Application
         switch(choice)
         {
             case 1: game.choiceTravel(1);
+                    event(game.event());
                     break;
             case 2: game.choiceRest(1);
                     break;
@@ -284,6 +284,51 @@ public class Main extends Application
         inventory.setItems(FXCollections.observableArrayList(game.inventoryList()));
     }
     
+    private void event(Animal animal)
+    {
+        if(animal != null)
+        {
+            GridPane layout = new GridPane();
+            layout.setVgap(SPACING);
+            layout.setAlignment(Pos.CENTER);
+            layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
+            
+            //event description
+            Label description = new Label(animal.getDescript());
+            description.setTextAlignment(TextAlignment.CENTER);
+            GridPane.setConstraints(description,0,0);
+            
+            //choices
+            ChoiceBox choices = new ChoiceBox(FXCollections.observableArrayList(game.getAnimals()));
+            choices.setTooltip(new Tooltip("Select Action"));
+            GridPane.setConstraints(choices,0,1);
+            
+            //button to choose
+            Button choose = new Button("Choose");
+            choose.setOnAction(e -> finishEvent(animal,choices.getSelectionModel().getSelectedIndex()));
+            choose.setPrefHeight(BUTTON_HEIGHT);
+            choose.setPrefWidth(BUTTON_WIDTH);
+            choose.setAlignment(Pos.CENTER);
+            GridPane.setConstraints(choose,0,2);
+            
+            layout.getChildren().addAll(description,choices,choose);
+            event = new Scene(layout,WIDTH,HEIGHT);
+            window.setScene(event);
+        }
+    }
+    
+    private void finishEvent(Animal animal, int choice)
+    {
+        if(game.correctChoice(choice, animal))
+            window.setScene(main);
+        else
+        {
+            game.killPlayer();
+            endGame();
+        }
+    }
+    
     //creates new scene for ending screen
     private void endGame()
     {
@@ -296,8 +341,8 @@ public class Main extends Application
         //end game message (win/lose)
         String temp;
         if(game.getPlayer().isAlive()) //player is alive = win
-            temp = "YOU WON\n" + "You traveled " + game.getWinDistance() + " km in " +
-                      game.getDay() + " days and " + time + " hours";
+            temp = "YOU SURVIVED\n" + "You traveled " + game.getWinDistance() + " km in " +
+                      game.getDay() + " days and " + game.getTime() + " hours";
         else //player is dead = lose
             temp = "YOU DIED\n" + "You traveled " + Format.left(game.getDistance(),3,1) + " km";
         Label message = new Label(temp);

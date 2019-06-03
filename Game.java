@@ -63,7 +63,37 @@ public class Game
     {
         return (player.getHealth()/5.0) / (inventory.size() * ((Water)inventory.get(0)).getAmount() + 1);
     }
+    
     //determines a chance event when continuing
+    public Animal event()
+    {
+        int random = (int)(Math.random()*11);
+        if(random < 2) //event occurs
+        {
+            random = (int)(Math.random()*animal.size());
+            switch(random)
+            {
+                case 0: return animal.get(0);
+                case 1: return animal.get(1);
+                case 2: return animal.get(2);
+                case 3: return animal.get(2);
+            }
+        }
+        return null; //no event
+    }
+    
+    public List getAnimals() { return animal;}
+    
+    public boolean correctChoice(int choice, Animal a)
+    {
+        return a.equals(animal.get(choice));
+    }
+    
+    public void killPlayer()
+    {
+        player.changeHealth(-10);
+    }
+    
     private void chanceEvent()
     {
         int num = (int)(Math.random()*11);
