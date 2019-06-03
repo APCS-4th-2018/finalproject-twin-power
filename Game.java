@@ -66,8 +66,8 @@ public class Game
     //determines a chance event when continuing
     public Animal event()
     {
-        int random = (int)(Math.random()*11);
-        if(random < 2) //event occurs
+        int random = (int)(Math.random()*20);
+        if(random == 1) //event occurs
         {
             random = (int)(Math.random()*animal.size());
             return animal.get(random);

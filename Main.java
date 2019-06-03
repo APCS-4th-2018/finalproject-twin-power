@@ -252,13 +252,13 @@ public class Main extends Application
             case 2: game.choiceRest(1);
                     break;
             case 3: game.choiceForage(1);
-                    updateInv();
                     break;
             case 4: game.useItem(inventory.getSelectionModel().getSelectedIndex());
-                    updateInv();
                     break;
         }
+        delay(1);
         updateStatus();
+        updateInv();
         if(game.endGame()) //game has ended
             endGame();
     }
@@ -299,7 +299,7 @@ public class Main extends Application
             Label description = new Label(animal.getDescript());
             description.setWrapText(true);
             description.setTextFill(Color.WHITE);
-            description.setPrefWidth(500);
+            description.setPrefWidth(600);
             GridPane.setConstraints(description,0,0,2,1);
             
             //choices
@@ -308,13 +308,12 @@ public class Main extends Application
             GridPane.setConstraints(select,0,2);
             
             ChoiceBox choices = new ChoiceBox(FXCollections.observableArrayList(game.getAnimals()));
-            choices.setPrefWidth(300);
-            choices.setTooltip(new Tooltip("Select Action"));
+            choices.setPrefWidth(400);
             GridPane.setConstraints(choices,1,2);
             
             //button to choose
             Button choose = new Button("Choose");
-            choose.setOnAction(e -> finishEvent(animal,choices.getSelectionModel().getSelectedIndex()));
+            choose.setOnAction(e -> {delay(1); finishEvent(animal,choices.getSelectionModel().getSelectedIndex());});
             choose.setPrefHeight(BUTTON_HEIGHT);
             choose.setPrefWidth(BUTTON_WIDTH);
             choose.setAlignment(Pos.CENTER);
@@ -369,5 +368,11 @@ public class Main extends Application
         layout.getChildren().addAll(message, restart);
         end = new Scene(layout,WIDTH,HEIGHT);
         window.setScene(end);
+    }
+    
+    private void delay(int seconds)
+    {
+        try { Thread.sleep(seconds * 1000);}
+        catch(Exception e) {}
     }
 }
