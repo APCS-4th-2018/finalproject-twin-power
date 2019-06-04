@@ -11,7 +11,7 @@ import javafx.geometry.*;
 import javafx.collections.*;
 import apcslib.*;
 /**
- * JavaFX version
+ * Graphics of Game using JavaFX.
  * 
  * @author  Sophia Du
  * @version 06/01/19
@@ -19,22 +19,22 @@ import apcslib.*;
 public class Main extends Application
 {
     //sizes for window, buttons, progress bars, images, etc.
-    final int WIDTH = 1200;
-    final int HEIGHT = 600;
-    final int BUTTON_WIDTH = 150;
-    final int BUTTON_HEIGHT = 40;
-    final int BAR_WIDTH = 200;
-    final int BAR_HEIGHT = 30;
-    final int ICON_SIZE = 28;
-    final int SPACING = 20;
+    private final int WIDTH = 1200;
+    private final int HEIGHT = 600;
+    private final int BUTTON_WIDTH = 150;
+    private final int BUTTON_HEIGHT = 40;
+    private final int BAR_WIDTH = 200;
+    private final int BAR_HEIGHT = 30;
+    private final int ICON_SIZE = 28;
+    private final int SPACING = 20;
     
-    Stage window;
-    Scene start, main, event, end;
-    Label time, distance;
-    ProgressBar health, hunger, thirst;
-    ListView inventory;
-    DynamicBackground background;
-    Game game;
+    private Stage window;
+    private Scene start, main, event, end;
+    private Label time, distance;
+    private ProgressBar health, hunger, thirst;
+    private ListView inventory;
+    private DynamicBackground background;
+    private Game game;
     
     public static void main(String[] args)
     {
@@ -110,6 +110,7 @@ public class Main extends Application
         window.setScene(main);
     }
     
+    //adds status displays to main scene
     private void addStatus(Pane layout)
     {
         //time + day
@@ -176,6 +177,7 @@ public class Main extends Application
         layout.getChildren().addAll(stat3, thirst, water);
     }
     
+    //adds the 3 choices to main scene
     private void addChoices(Pane layout)
     {
         //travel
@@ -205,6 +207,7 @@ public class Main extends Application
         layout.getChildren().addAll(travel, rest, forage);
     }
     
+    //adds inventory display to main scene
     private void addInventory(Pane layout)
     {
         Label inv = new Label("Inventory:");
@@ -229,6 +232,7 @@ public class Main extends Application
         layout.getChildren().addAll(inv, inventory, use);
     }
     
+    //adds background to main scene
     private void addBackground(Pane layout)
     {
         //empty middle space
@@ -242,6 +246,11 @@ public class Main extends Application
         layout.setBackground(background.getBackground(game.getTime()));
     }
     
+    //method for selecting choices
+    //1 - travel
+    //2 - rest
+    //3 - forage
+    //4 - use inventory
     private void choice(int choice)
     {
         switch(choice)
@@ -256,21 +265,19 @@ public class Main extends Application
             case 4: game.useItem(inventory.getSelectionModel().getSelectedIndex());
                     break;
         }
-        //delay(0.5);
         updateStatus();
+        updateBackground();
         updateInv();
         if(game.endGame()) //game has ended
             endGame();
     }
     
+    //update status displays
     private void updateStatus()
     {
         //day and time
         distance.setText(Format.left(game.getDistance(),3,1) + " km traveled");
         time.setText("Day " + (game.getDay() + 1) + " " + game.getTime() + ":00");
-        
-        //background
-        ((Pane)main.getRoot()).setBackground(background.getBackground(game.getTime()));
         
         //player stats
         health.setProgress(game.getPlayer().getHealth()/10);
@@ -278,15 +285,23 @@ public class Main extends Application
         thirst.setProgress(game.getPlayer().getThirst()/10);
     }
     
+    //updates background
+    private void updateBackground()
+    {
+        ((Pane)main.getRoot()).setBackground(background.getBackground(game.getTime()));
+    }
+    
+    //updates inventory
     private void updateInv()
     {
         inventory.setItems(null);
         inventory.setItems(FXCollections.observableArrayList(game.inventoryList()));
     }
     
+    //switch from main to event scene
     private void event(Animal animal)
     {
-        if(animal != null)
+        if(animal != null) //event actually happening
         {
             GridPane layout = new GridPane();
             layout.setVgap(SPACING);
@@ -325,6 +340,9 @@ public class Main extends Application
         }
     }
     
+    //applies consequences of event + choice
+    //correct choice - switch back to main
+    //incorrect choice - highly dmg player
     private void finishEvent(Animal animal, int choice)
     {
         if(choice >= 0)
@@ -369,11 +387,5 @@ public class Main extends Application
         layout.getChildren().addAll(message, restart);
         end = new Scene(layout,WIDTH,HEIGHT);
         window.setScene(end);
-    }
-    
-    private void delay(double seconds)
-    {
-        try { Thread.sleep((int)(seconds * 1000));}
-        catch(Exception e) {}
     }
 }

@@ -2,4 +2,5 @@
 comment0.target=ColoredProgressBar
 comment1.params=styleClass\ progress
 comment1.target=ColoredProgressBar(java.lang.String,\ double)
+comment1.text=\r\n\ Creates\ a\ ColoredProgressBar\ with\ the\ specified\ style\ class\r\n\ and\ progress.\r\n\ \r\n\ @param\ \ \ styleClass\ \ name\ of\ the\ style\ class\r\n\ @param\ \ \ progress\ \ \ \ Progress\ of\ the\ bar\ (0\ to\ 1).\r\n
 numComments=2
