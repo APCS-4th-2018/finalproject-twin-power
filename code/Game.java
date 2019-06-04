@@ -1,6 +1,3 @@
-import chn.util.*;
-import java.util.*;
-import apcslib.*;
 /**
  * Representation of a single game
  *
@@ -10,7 +7,6 @@ import apcslib.*;
  */
 import java.util.*;
 import java.lang.Math;
-import chn.util.*;
 public class Game
 {
     private int day, time;

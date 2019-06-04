@@ -1,11 +1,10 @@
-import apcslib.*;
-import chn.util.*;
 /**
  * Representation of the Player
  *
  * @author Julia Du
  * @version 05/21/19
  */
+import apcslib.*;
 public class Player
 {
     private double health, hunger, thirst;
