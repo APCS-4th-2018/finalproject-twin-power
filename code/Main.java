@@ -354,6 +354,11 @@ public class Main extends Application
                 game.killPlayer();
                 if(game.endGame()) //game has ended
                     endGame();
+                else
+                {
+                    updateStatus();
+                    window.setScene(main);
+                }
             }
         }
     }
