@@ -54,5 +54,5 @@ public class Water implements Item
      * Returns the name of the Water
      * @return name
      */
-    public String toString(){return name + " (" + amount + " liters)";}
+    public String toString(){return name + " (" + amount + " L)";}
 }

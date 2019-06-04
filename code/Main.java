@@ -21,7 +21,7 @@ public class Main extends Application
     //sizes for window, buttons, progress bars, images, etc.
     final int WIDTH = 1200;
     final int HEIGHT = 600;
-    final int BUTTON_WIDTH = 100;
+    final int BUTTON_WIDTH = 150;
     final int BUTTON_HEIGHT = 40;
     final int BAR_WIDTH = 200;
     final int BAR_HEIGHT = 30;
@@ -215,7 +215,7 @@ public class Main extends Application
         ObservableList items = FXCollections.observableArrayList(game.inventoryList());
         inventory = new ListView(items);
         inventory.setPrefHeight(200);
-        inventory.setPrefWidth(300);
+        inventory.setPrefWidth(425);
         GridPane.setConstraints(inventory,5,1,1,8);
         
         //button to use selected item
@@ -233,7 +233,7 @@ public class Main extends Application
     {
         //empty middle space
         Label empty = new Label("");
-        empty.setPrefWidth(350);
+        empty.setPrefWidth(200);
         GridPane.setConstraints(empty,4,0);
         layout.getChildren().add(empty);
         

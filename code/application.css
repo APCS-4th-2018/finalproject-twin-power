@@ -1,4 +1,8 @@
+@font-face {
+    src: url("FONT.TTF"),
+}
 .root{
+     -fx-font-family: "8BIT WONDER";
      -fx-font-size: 15pt;
  }
 .aqua-bar { -fx-accent: aqua; }
