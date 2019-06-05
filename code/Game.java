@@ -51,11 +51,12 @@ public class Game
     //returns the speed of the player, which depends on their health and inventory
     private double getSpeed()
     {
-        double speed = ((double)player.getHealth() / 5) - (((Water)inventory.get(0)).getAmount()) * 0.1;
+        double speed = ((double)player.getHealth() / 4);
+        speed -= (((Water)inventory.get(0)).getAmount()) * 0.1;
+        speed -= (20 - player.getThirst() - player.getHunger()) * 0.1;
         if(speed <= 0.1)
-            return 0.1;
-        else
-            return speed;
+            speed = 0.1;
+        return speed;
     }
     
     //determines a chance event when continuing
@@ -84,9 +85,9 @@ public class Game
     {
         //move the time forward, regen health
         timeForward(hours);
-        player.changeHealth(player.getHunger() * hours / 2);
-        player.changeHunger(-(double)hours/20);
-        player.changeThirst(-(double)hours/10);
+        player.changeHealth((player.getHunger() + player.getThirst()) * hours / 10);
+        player.changeHunger(-(double)hours/10);
+        player.changeThirst(-(double)hours/5);
     }
     
     /**
