@@ -144,15 +144,14 @@ public class Game
             //the number of items found is by chance
             for(int n = 0; n < numItems; n++)
             {
-                //limit inventory size
-                if(inventory.size() < 10)
+                //decide if food or water was found, limit inventory size
+                if(Math.random() < 0.5)
                 {
-                    //either find food or water
-                    if(Math.random() < 0.5)
+                    if(inventory.size() < 10)
                         inventory.add(addRandomFood());
-                    else
-                        ((Water)inventory.get(0)).changeAmount(1);
                 }
+                else
+                    ((Water)inventory.get(0)).changeAmount(1);
             }
         }
     }
