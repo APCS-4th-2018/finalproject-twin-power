@@ -124,7 +124,7 @@ public class Game
     //determines the name of the food found
     private Food addRandomFood()
     {
-        String[] names = {"apple", "berries", "acorns", "pine nuts", "grasshopper", "lizard", "mushroom"};
+        String[] names = {"apple", "berries", "acorns", "pine nuts", "beetle", "grasshopper", "lizard", "mushroom"};
         String chosen = names[(int)(Math.random() * names.length)];
         return new Food(chosen);
     }
