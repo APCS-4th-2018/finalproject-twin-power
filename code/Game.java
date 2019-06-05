@@ -16,6 +16,11 @@ public class Game
     private ArrayList<Item> inventory;
     private ArrayList<Animal> animal;
     
+    /**
+     * Creates a new Game with a Player of the given name.
+     * 
+     * @param   name    The name of the player.
+     */
     public Game(String name)
     {
         player = new Player(name);
@@ -34,8 +39,9 @@ public class Game
     }
     
     /**
-     * When Player chooses to continue traveling
-     * @param hours     the number of hours the Player will travel for
+     * When Player chooses to continue traveling.
+     * 
+     * @param hours     The number of hours the Player will travel for.
      */
     public void choiceTravel(int hours)
     {
@@ -60,6 +66,11 @@ public class Game
     }
     
     //determines a chance event when continuing
+    /**
+     * Determines the random event.
+     * 
+     * @return  The event (animal), or null if no event occurs.
+     */
     public Animal event()
     {
         int random = (int)(Math.random()*20);
@@ -71,15 +82,31 @@ public class Game
         return null; //no event
     }
     
+    /**
+     * Returns the List of all the Animals.
+     * 
+     * @return  A list of the animals.
+     */
     public List getAnimals() { return animal;}
     
+    /**
+     * Returns whether or not the choice is a correct solution
+     * for the given Animal.
+     * 
+     * @param   choice  The choice (0 to n-1, with n number of animals).
+     * @param   a       The animal.
+     */
     public boolean correctChoice(int choice, Animal a) { return a.equals(animal.get(choice));}
     
+    /**
+     * Kill/severely injures the player by decreasing health significantly.
+     */
     public void killPlayer() { player.changeHealth(-8);}
     
     /**
      * When Player chooses to rest
-     * @param hours     the number of hours the Player will rest for
+     * 
+     * @param hours     The number of hours the Player will rest for.
      */
     public void choiceRest(int hours)
     {
@@ -91,8 +118,9 @@ public class Game
     }
     
     /**
-     * When Player chooses to forage for supplies
-     * @param hours     the number of hours the Player will forage for
+     * When Player chooses to forage for supplies.
+     * 
+     * @param hours     The number of hours the Player will forage for.
      */
     public void choiceForage(int hours)
     {
@@ -102,6 +130,7 @@ public class Game
         player.changeThirst(-(double)hours/5);
         addRandomItems(hours);
     }
+    
     //determines which items are found while foraging
     private void addRandomItems(int hours)
     {
@@ -121,6 +150,7 @@ public class Game
             }
         }
     }
+    
     //determines the name of the food found
     private Food addRandomFood()
     {
@@ -163,33 +193,38 @@ public class Game
         }
     }
     
-    private void forceUpdate()
-    {
-        Water temp = (Water)inventory.get(0);
-        inventory.remove(0);
-        inventory.add(0, temp);
-    }
     /**
-     * Returns the current distance traveled by the Player
-     * @return distance
+     * Returns the current distance traveled by the Player.
+     * 
+     * @return The distance traveled.
      */
     public double getDistance() { return distance;}
+    
     /**
-     * Returns the current day in the Game
-     * @return day
+     * Returns the current day in the Game.
+     * 
+     * @return The day.
      */
     public int getDay() { return day;}
+    
     /**
-     * Returns the current time in the Game
-     * @return time
+     * Returns the current time in the Game.
+     * 
+     * @return The time.
      */
     public int getTime() { return time;}
-
+    
+    /**
+     * Returns the Player of the Game.
+     * 
+     * @return  The Player.
+     */
     public Player getPlayer() { return player;}
     
     /**
-     * Determines whether or not the game has ended (if the Player died or reached the destination)
-     * @return end  a boolean representing whether or not the game has ended
+     * Determines whether or not the game has ended (if the Player died or reached the destination).
+     * 
+     * @return end  a boolean representing whether or not the game has ended.
      */
     public boolean endGame()
     {
@@ -203,6 +238,8 @@ public class Game
 
     /**
      * Returns the distance needed to win the game.
+     * 
+     * @return  The win distance.
      */
     public int getWinDistance() { return WIN_DISTANCE; }
 }
