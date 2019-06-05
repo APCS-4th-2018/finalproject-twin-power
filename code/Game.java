@@ -204,8 +204,5 @@ public class Game
     /**
      * Returns the distance needed to win the game.
      */
-    public int getWinDistance()
-    {
-        return WIN_DISTANCE;
-    }
+    public int getWinDistance() { return WIN_DISTANCE; }
 }
