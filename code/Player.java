@@ -64,7 +64,7 @@ public class Player
         hunger += amount;
         if(hunger < 0)
         {
-            health += hunger/2;
+            health += hunger;
             hunger = 0;
         }
         if(hunger > 10)
@@ -80,7 +80,7 @@ public class Player
         thirst += amount;
         if(thirst < 0)
         {
-            health += thirst;
+            health += 2 * thirst;
             thirst = 0;
         }
         if(thirst > 10)
