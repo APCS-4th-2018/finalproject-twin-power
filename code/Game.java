@@ -53,7 +53,7 @@ public class Game
     {
         double speed = ((double)player.getHealth() / 4);
         speed -= (((Water)inventory.get(0)).getAmount()) * 0.1;
-        speed -= (20 - player.getThirst() - player.getHunger()) * 0.1;
+        speed -= (20 - player.getThirst() - player.getHunger()) * 0.2;
         if(speed <= 0.1)
             speed = 0.1;
         return speed;
@@ -85,7 +85,7 @@ public class Game
     {
         //move the time forward, regen health
         timeForward(hours);
-        player.changeHealth((player.getHunger() + player.getThirst()) * hours / 10);
+        player.changeHealth((player.getHunger() + player.getThirst()) * hours / 20);
         player.changeHunger(-(double)hours/10);
         player.changeThirst(-(double)hours/5);
     }
@@ -101,6 +101,9 @@ public class Game
         player.changeHunger(-(double)hours/10);
         player.changeThirst(-(double)hours/5);
         addRandomItems(hours);
+        
+        {
+        }
     }
     //determines which items are found while foraging
     private void addRandomItems(int hours)
@@ -112,12 +115,15 @@ public class Game
             //the number of items found is by chance
             for(int n = 0; n < numItems; n++)
             {
-                double random = Math.random();
-                //either find food or water
-                if(random < 0.5)
-                    inventory.add(addRandomFood());
-                else
-                    ((Water)inventory.get(0)).changeAmount(1);
+                //limit inventory size
+                if(inventory.size() < 10)
+                {
+                    //either find food or water
+                    if(Math.random() < 0.5)
+                        inventory.add(addRandomFood());
+                    else
+                        ((Water)inventory.get(0)).changeAmount(1);
+                }
             }
         }
     }

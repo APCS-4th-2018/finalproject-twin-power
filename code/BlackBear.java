@@ -6,7 +6,6 @@
  */
 public class BlackBear extends Animal
 {
-    
     /**
      * Constructor for objects of class Bear
      */
