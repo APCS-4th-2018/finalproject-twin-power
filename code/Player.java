@@ -80,7 +80,7 @@ public class Player
         thirst += amount;
         if(thirst < 0)
         {
-            health += 2 * thirst;
+            health += 5 * thirst;
             thirst = 0;
         }
         if(thirst > 10)

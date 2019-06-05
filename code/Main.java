@@ -370,15 +370,20 @@ public class Main extends Application
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(SPACING);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
-        //end game message (win/lose)
+        //end game message (win/lose) and background
         String temp;
         if(game.getPlayer().isAlive()) //player is alive = win
+        {
             temp = "YOU SURVIVED\n" + "You traveled " + game.getWinDistance() + " km in " +
                       game.getDay() + " days and " + game.getTime() + " hours";
+            layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
+        }
         else //player is dead = lose
+        {
             temp = "YOU DIED\n" + "You traveled " + Format.left(game.getDistance(),3,1) + " km";
+            layout.setBackground(new Background(new BackgroundFill(Color.rgb(255,0,0),null,null)));
+        }
         Label message = new Label(temp);
         message.setTextAlignment(TextAlignment.CENTER);
         GridPane.setConstraints(message, 0, 0);

@@ -48,6 +48,10 @@ public class Water implements Item
     public void changeAmount(int liters)
     {
         amount += liters;
+        if(amount > 5)
+        {
+            amount = 5;
+        }
     }
     
     /**
