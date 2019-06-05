@@ -144,7 +144,7 @@ public class Main extends Application
         stat2.setTextFill(Color.WHITE);
         GridPane.setConstraints(stat2,0,4);
         
-        hunger = new ColoredProgressBar("chocolate-bar",game.getPlayer().getHunger()/10);
+        hunger = new ColoredProgressBar("darkorange-bar",game.getPlayer().getHunger()/10);
         hunger.setPrefHeight(BAR_HEIGHT);
         hunger.setPrefWidth(BAR_WIDTH);
         GridPane.setConstraints(hunger,1,4);
