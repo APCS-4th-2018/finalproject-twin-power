@@ -91,7 +91,7 @@ public class Player
      * Determines whether or not the player is still alive
      * @return  true if s/he is alive, false if not
      */
-    public boolean isAlive() {return health > 0;}
+    public boolean isAlive() {return health > 0.5;}
     
     /**
      * Returns a string that has the name, health, hunger, and thirst of the Player
