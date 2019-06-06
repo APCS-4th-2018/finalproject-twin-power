@@ -21,9 +21,9 @@ public class Game
      * 
      * @param   name    The name of the player.
      */
-    public Game(String name)
+    public Game()
     {
-        player = new Player(name);
+        player = new Player();
         inventory = new ArrayList<Item>();
         inventory.add(new Water("canteen of water"));
         day = 0;

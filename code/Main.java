@@ -57,39 +57,27 @@ public class Main extends Application
     //creates starting screen
     private void start()
     {
-        GridPane layout = new GridPane();
-        layout.setHgap(SPACING);
-        layout.setVgap(SPACING);
+        VBox layout = new VBox();
+        layout.setSpacing(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
-        //game intro instructions
-        Label welcome = new Label("You are hiking through the forest in the Sierra Nevada Mountains. Feeling extra adventurous, you wander off the trail, but you stumble near a ridge and fall down a steep cliff.\n" + 
-                                  "\nLuckily, you survive. But as you look up, there is no way back and you've lost all your supplies, except for a 5 liter water canteen and a small backpack (both now empty).\n" +
-                                  "\nYou know the nearest camp is 100 km away. Can you make it there before you die?\n");
+        //game intro/instructions
+        Label welcome = new Label("You are hiking through the forest in the Sierra Nevada Mountains. Feeling extra adventurous, you wander off the trail, but you stumble near a ridge and fall down a steep cliff." + 
+                                  "\n\nLuckily, you survive. But as you look up, there is no way back and you've lost all your supplies, except for a 5 liter water canteen and a small backpack (both now empty)." +
+                                  "\n\nYou know the nearest camp is 100 km away. Can you make it there before you die?");
         welcome.setWrapText(true);
         welcome.setPrefWidth(800);
         welcome.setTextAlignment(TextAlignment.CENTER);
-        GridPane.setConstraints(welcome,0,0,3,1);
-        
-        //name inputing
-        Label enter = new Label("Enter name:");
-        GridPane.setConstraints(enter,0,1);
-        
-        TextField input = new TextField();
-        input.setPrefHeight(BUTTON_HEIGHT);
-        GridPane.setConstraints(input,1,1);
         
         //start button
         Button startButton = new Button("Start");
-        startButton.setOnAction(e -> {game = new Game(input.getText());
-                                      mainMenu();});
+        startButton.setOnAction(e -> {game = new Game(); mainMenu();});
         startButton.setPrefHeight(BUTTON_HEIGHT);
         startButton.setPrefWidth(BUTTON_WIDTH);
-        GridPane.setConstraints(startButton,2,1);
         
-        layout.getChildren().addAll(welcome, enter, input, startButton);
+        layout.getChildren().addAll(welcome, startButton);
         start = new Scene(layout,WIDTH,HEIGHT);
         window.setScene(start);
     }
@@ -102,7 +90,6 @@ public class Main extends Application
         layout.setHgap(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        layout.setGridLinesVisible(true);
         
         //add time, distance, player stats
         addStatus(layout);

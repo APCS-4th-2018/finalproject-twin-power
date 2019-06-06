@@ -8,16 +8,12 @@ import apcslib.*;
 public class Player
 {
     private double health, hunger, thirst;
-    private String name;
     
     /**
-     * Constructor to create a new Player object with a specific name
-     * 
-     * @param str   the name of the player
+     * Constructor to create a new Player object.
      */
-    public Player(String str)
+    public Player()
     {
-        name = str;
         health = hunger = thirst = 10;
     }
     
@@ -36,11 +32,6 @@ public class Player
      * @return thirst   a double ranging from 0-10
      */
     public double getThirst(){return thirst;}
-    /**
-     * Returns the name of the player
-     * @return name     the name of the player
-     */
-    public String getName(){return name;}
     
     /**
      * Changes the player's health by a specific amount
