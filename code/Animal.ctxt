@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Animal
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Animal\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=nd\ s\ e
-comment1.target=Animal(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ Here\ is\ the\ abstract\ class\ for\ all\ Animal\ types.\r\n\r\n\ @author\ Ian\ Xu\r\n\ @version\ Twin\ Power\r\n
+comment1.params=nd\ s
+comment1.target=Animal(java.lang.String,\ java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getDescript()
 comment3.params=

@@ -38,13 +38,18 @@ public class Water implements Item
     }
     
     /**
-     * 
+     * Returns the amount of water currently available
+     * @return amount   the amount of water in liters
      */
     public int getAmount()
     {
         return amount;
     }
     
+    /**
+     * Allows the amount of water to be increased or decreased
+     * @param liters    the number of liters of water to be added
+     */
     public void changeAmount(int liters)
     {
         amount += liters;

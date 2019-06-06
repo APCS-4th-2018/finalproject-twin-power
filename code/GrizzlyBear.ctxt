@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=GrizzlyBear
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ GrizzlyBear\ here.\r\n\r\n\ @author\ Kane\ Xu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Here\ is\ the\ class\ that\ contains\ description\ and\ solution\ for\ a\ GrizzlyBear\r\n\r\n\ @author\ Ian\ &\ Kane\r\n\ @version\ Twin\ Power\r\n
 comment1.params=
 comment1.target=GrizzlyBear()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Bear\r\n
