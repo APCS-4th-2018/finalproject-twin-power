@@ -11,7 +11,7 @@ public class RattleSnake extends Animal
      */
     public RattleSnake()
     {
-        super("You hear some rattling nearby, and spot a rattlesnake 5 feet from you. What should you do?",
+        super("You hear some rattling nearby and spot a rattlesnake 5 feet from you. What should you do?",
               "Don't make any sudden movements and slowly move away.");  
     }
 }

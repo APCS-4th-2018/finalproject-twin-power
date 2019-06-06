@@ -11,7 +11,7 @@ public class Coyote extends Animal
      */
     public Coyote()
     {
-        super("A Coyote has spotted you, and is ready for attack. What should you do?",
+        super("A Coyote has spotted you and is ready for attack. What should you do?",
               "Don't run. Throw something at it while yelling and waving arms");
     }
 }

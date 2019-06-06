@@ -102,7 +102,7 @@ public class Main extends Application
         layout.setHgap(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        layout.setGridLinesVisible(false);
+        layout.setGridLinesVisible(true);
         
         //add time, distance, player stats
         addStatus(layout);
@@ -136,50 +136,50 @@ public class Main extends Application
         //health
         Label stat1 = new Label("Health: ");
         stat1.setTextFill(Color.WHITE);
-        GridPane.setConstraints(stat1,0,3);
+        GridPane.setConstraints(stat1,0,2);
         
         health = new ColoredProgressBar("red-bar",game.getPlayer().getHealth()/10);
         health.setPrefHeight(BAR_HEIGHT);
         health.setPrefWidth(BAR_WIDTH);
-        GridPane.setConstraints(health,1,3);
+        GridPane.setConstraints(health,1,2);
         
         ImageView heart = new ImageView("/Graphics/SYMBOLS/heart.png");
         heart.setFitHeight(ICON_SIZE);
         heart.setFitWidth(ICON_SIZE);
         heart.setSmooth(false);
-        GridPane.setConstraints(heart,2,3);
+        GridPane.setConstraints(heart,2,2);
         
         //hunger
         Label stat2 = new Label("Hunger: ");
         stat2.setTextFill(Color.WHITE);
-        GridPane.setConstraints(stat2,0,4);
+        GridPane.setConstraints(stat2,0,3);
         
         hunger = new ColoredProgressBar("darkorange-bar",game.getPlayer().getHunger()/10);
         hunger.setPrefHeight(BAR_HEIGHT);
         hunger.setPrefWidth(BAR_WIDTH);
-        GridPane.setConstraints(hunger,1,4);
+        GridPane.setConstraints(hunger,1,3);
         
         ImageView food = new ImageView("/Graphics/SYMBOLS/hunger.png");
         food.setFitHeight(ICON_SIZE);
         food.setFitWidth(ICON_SIZE);
         food.setSmooth(false);
-        GridPane.setConstraints(food,2,4);
+        GridPane.setConstraints(food,2,3);
         
         //thirst
         Label stat3 = new Label("Thirst: ");
         stat3.setTextFill(Color.WHITE);
-        GridPane.setConstraints(stat3,0,5);
+        GridPane.setConstraints(stat3,0,4);
         
         thirst = new ColoredProgressBar("aqua-bar",game.getPlayer().getThirst()/10);
         thirst.setPrefHeight(BAR_HEIGHT);
         thirst.setPrefWidth(BAR_WIDTH);
-        GridPane.setConstraints(thirst,1,5);
+        GridPane.setConstraints(thirst,1,4);
         
         ImageView water = new ImageView("/Graphics/SYMBOLS/water.png");
         water.setFitHeight(ICON_SIZE);
         water.setFitWidth(ICON_SIZE);
         water.setSmooth(false);
-        GridPane.setConstraints(water,2,5);
+        GridPane.setConstraints(water,2,4);
         
         layout.getChildren().addAll(time, distance);
         layout.getChildren().addAll(stat1, health, heart);
@@ -385,7 +385,7 @@ public class Main extends Application
         String temp;
         if(game.getPlayer().isAlive()) //player is alive = win
         {
-            temp = "YOU SURVIVED\n" + "You traveled " + game.getWinDistance() + " km in " +
+            temp = "YOU SURVIVED AND REACHED THE CAMP\n" + "in " +
                       game.getDay() + " days and " + game.getTime() + " hours";
             layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         }
