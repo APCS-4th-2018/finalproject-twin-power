@@ -373,7 +373,7 @@ public class Main extends Application
         if(game.getPlayer().isAlive()) //player is alive = win
         {
             temp = "YOU SURVIVED AND REACHED THE CAMP\n" + "in " +
-                      game.getDay() + " days and " + game.getTime() + " hours";
+                      game.getDay() + " days and " + game.getTime() + " hour(s)";
             layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         }
         else //player is dead = lose

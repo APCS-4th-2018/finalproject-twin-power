@@ -2,7 +2,7 @@
 comment0.target=Game
 comment1.params=
 comment1.target=Game()
-comment1.text=\r\n\ Creates\ a\ new\ Game\ with\ a\ Player\ of\ the\ given\ name.\r\n\ \r\n\ @param\ \ \ name\ \ \ \ The\ name\ of\ the\ player.\r\n
+comment1.text=\r\n\ Creates\ a\ new\ Game.\r\n
 comment10.params=hours
 comment10.target=void\ addRandomItems(int)
 comment11.params=
