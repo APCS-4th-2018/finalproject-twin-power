@@ -44,7 +44,7 @@ public class Main extends Application
     public void start(Stage primaryStage) throws Exception
     {
         window = primaryStage;
-        window.setTitle("Game");
+        window.setTitle("Wilderness Survival");
         window.setOnCloseRequest(e -> System.exit(0));
         window.getIcons().add(new Image("/Graphics/SYMBOLS/app icon.png"));
         
@@ -63,13 +63,19 @@ public class Main extends Application
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
-        Label label = new Label("Enter name:");
-        GridPane.setConstraints(label,0,0);
+        //game intro instructions
+        Label welcome = new Label("" +
+                                  "The nearest camp is 100 km away." +
+                                  "\nYou only have a 5 liter water canteen and a small backpack.");
+        GridPane.setConstraints(welcome,0,0);
         
-        //input of name
+        //name inputing
+        Label enter = new Label("Enter name:");
+        GridPane.setConstraints(enter,0,1);
+        
         TextField input = new TextField();
         input.setPrefHeight(BUTTON_HEIGHT);
-        GridPane.setConstraints(input,1,0);
+        GridPane.setConstraints(input,1,1);
         
         //start button
         Button startButton = new Button("Start");
@@ -77,9 +83,9 @@ public class Main extends Application
                                       mainMenu();});
         startButton.setPrefHeight(BUTTON_HEIGHT);
         startButton.setPrefWidth(BUTTON_WIDTH);
-        GridPane.setConstraints(startButton,2,0);
+        GridPane.setConstraints(startButton,2,1);
         
-        layout.getChildren().addAll(label, input, startButton);
+        layout.getChildren().addAll(welcome, enter, input, startButton);
         start = new Scene(layout,WIDTH,HEIGHT);
         window.setScene(start);
     }
