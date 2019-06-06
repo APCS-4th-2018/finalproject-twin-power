@@ -59,15 +59,19 @@ public class Main extends Application
     {
         GridPane layout = new GridPane();
         layout.setHgap(SPACING);
+        layout.setVgap(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
         //game intro instructions
         Label welcome = new Label("" +
-                                  "The nearest camp is 100 km away." +
+                                  "\nThe nearest camp is 100 km away." +
                                   "\nYou only have a 5 liter water canteen and a small backpack.");
-        GridPane.setConstraints(welcome,0,0);
+        welcome.setWrapText(true);
+        welcome.setPrefWidth(800);
+        welcome.setTextAlignment(TextAlignment.CENTER);
+        GridPane.setConstraints(welcome,0,0,3,1);
         
         //name inputing
         Label enter = new Label("Enter name:");
