@@ -65,9 +65,9 @@ public class Main extends Application
         layout.setBackground(new Background(new BackgroundFill(Color.rgb(184,206,234),null,null)));
         
         //game intro instructions
-        Label welcome = new Label("" +
-                                  "\nThe nearest camp is 100 km away." +
-                                  "\nYou only have a 5 liter water canteen and a small backpack.");
+        Label welcome = new Label("You are hiking through the forest in the Sierra Nevada Mountains. Feeling extra adventurous, you wander off the trail, but you stumble near a ridge and fall down a steep cliff.\n" + 
+                                  "\nLuckily, you survive. But as you look up, there is no way back and you've lost all your supplies, except for a 5 liter water canteen and a small backpack (both now empty).\n" +
+                                  "\nYou know the nearest camp is 100 km away. Can you make it there before you die?\n");
         welcome.setWrapText(true);
         welcome.setPrefWidth(800);
         welcome.setTextAlignment(TextAlignment.CENTER);
