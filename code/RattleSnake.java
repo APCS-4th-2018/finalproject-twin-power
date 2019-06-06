@@ -1,8 +1,8 @@
 /**
- * Write a description of class Snake here.
+ * Here is the class that contains description and solution for a RattleSnake
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Kane & Ian
+ * @version Twin Power
  */
 public class RattleSnake extends Animal
 {
@@ -12,11 +12,6 @@ public class RattleSnake extends Animal
     public RattleSnake()
     {
         super("You hear some rattling nearby, and spot a rattlesnake 5 feet from you. What should you do?",
-              "Slowly move away from the animal and do not make any sudden movements.",
-              "slowly move away from the area of the sound and do not make any sudden moves." + 
-              "Again, most snake bites happen when people are messing with the animals." + 
-              "And even if you think a snake is dead or that you killed it, stay away from it." +
-              "Freshly killed snakes can still bite and inject venom.");
-              
+              "Don't make any sudden movements and slowly move away.");  
     }
 }

@@ -32,7 +32,7 @@ public class Game
         
         //construct and array of different animals for random generation each turn        
         animal = new ArrayList <Animal>();
-        animal.add(new MountainLion());
+        animal.add(new Coyote());
         animal.add(new RattleSnake());
         animal.add(new GrizzlyBear());
         animal.add(new BlackBear());
@@ -101,7 +101,7 @@ public class Game
     /**
      * Kill/severely injures the player by decreasing health significantly.
      */
-    public void killPlayer() { player.changeHealth(-8);}
+    public void killPlayer() { player.changeHealth(-5);}
     
     /**
      * When Player chooses to rest

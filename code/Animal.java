@@ -1,20 +1,18 @@
 /**
- * Write a description of class Animal here.
+ * Here is the abstract class for all Animal types.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ian Xu
+ * @version Twin Power
  */
 public abstract class Animal
 {
     protected String nameDescription;
     protected String solution;
-    protected String explanation;
 
-    public Animal (String nd, String s, String e)
+    public Animal (String nd, String s)
     {
         nameDescription = nd;
         solution = s;
-        explanation = e;
     }
     
     public String getDescript() { return nameDescription;}
