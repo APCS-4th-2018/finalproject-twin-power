@@ -3,5 +3,5 @@ comment0.target=RattleSnake
 comment0.text=\r\n\ Here\ is\ the\ class\ that\ contains\ description\ and\ solution\ for\ a\ RattleSnake\r\n\r\n\ @author\ Kane\ &\ Ian\r\n\ @version\ Twin\ Power\r\n
 comment1.params=
 comment1.target=RattleSnake()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Bear\r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ RattleSnake\r\n
 numComments=2

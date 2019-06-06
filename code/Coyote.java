@@ -7,7 +7,7 @@
 public class Coyote extends Animal
 {
     /**
-     * Constructor for objects of class Bear
+     * Constructor for objects of class Coyote
      */
     public Coyote()
     {

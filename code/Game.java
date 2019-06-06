@@ -17,9 +17,7 @@ public class Game
     private ArrayList<Animal> animal;
     
     /**
-     * Creates a new Game with a Player of the given name.
-     * 
-     * @param   name    The name of the player.
+     * Creates a new Game.
      */
     public Game()
     {

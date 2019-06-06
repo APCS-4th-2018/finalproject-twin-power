@@ -7,7 +7,7 @@
 public class GrizzlyBear extends Animal
 {
     /**
-     * Constructor for objects of class Bear
+     * Constructor for objects of class GrizzlyBear
      */
     public GrizzlyBear()
     {

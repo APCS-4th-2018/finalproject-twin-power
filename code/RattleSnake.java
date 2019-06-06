@@ -7,7 +7,7 @@
 public class RattleSnake extends Animal
 {
     /**
-     * Constructor for objects of class Bear
+     * Constructor for objects of class RattleSnake
      */
     public RattleSnake()
     {

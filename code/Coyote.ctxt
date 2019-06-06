@@ -3,5 +3,5 @@ comment0.target=Coyote
 comment0.text=\r\n\ Here\ is\ the\ class\ containing\ description\ and\ solution\ for\ a\ Coyote\r\n\r\n\ @author\ Ian\ &\ Kane\r\n\ @version\ Twin\ Power\r\n
 comment1.params=
 comment1.target=Coyote()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Bear\r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Coyote\r\n
 numComments=2
